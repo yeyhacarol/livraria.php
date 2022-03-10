@@ -1,0 +1,60 @@
+#highlights {
+    width: 100%;
+    min-height: 510px;
+    height: auto;
+
+    overflow: hidden;
+
+    padding: 25px;
+
+    background-color: #000;
+}
+
+#highlights h1 {
+    font-family: 'Rokkitt', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+
+    color: #fff;
+    text-align: center;
+
+    margin-bottom: 100px;
+}
+
+.highlight-cards-container {
+    width: 100%;
+    height: inherit;
+
+    display: flex;
+    justify-content: center;  
+}
+
+.card {
+    width: 400px;
+    min-height: auto;
+
+    float: left;
+
+    text-align: center;
+} 
+
+.card img {
+    width: 400px;
+    height: 450px;
+}
+
+.card-description {
+    width: 300px;
+    height: 100px;
+
+    font-family: 'Rokkitt', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-style: normal;
+
+    text-align: center;
+
+    color: #fff;
+}
+
