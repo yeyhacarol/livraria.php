@@ -14,6 +14,8 @@ header .header-items {
 }
 
 .header-items a {
+    position: relative;
+
     font-family: 'Rokkitt', serif;
     font-size: 1.8rem;
     font-weight: 400;
@@ -23,6 +25,26 @@ header .header-items {
     text-decoration: none;
 
     margin-right: 20px;
+}
+
+.header-items a:after {
+    content: "";
+
+    display: block;
+    position: absolute;
+
+    width: 0;
+    height: 2px;
+    
+    background: #000;
+    
+    transition: width 0.5s ease 0s, left 0.5s ease 0s;
+    left: 50%;   
+}
+
+.header-items a:hover:after {
+    width: 100%; 
+    left: 0; 
 }
 
 .header-title {
@@ -45,12 +67,11 @@ header .header-items {
     font-style: normal;
 }
 
-.line {
+.header-line {
     width: 100%;
 
     margin-bottom: 41.5px;
 
     border: 1px solid #000;
 }
-
 
