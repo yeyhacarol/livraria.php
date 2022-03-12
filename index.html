@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="./css/header.css">
     <link rel="stylesheet" type="text/css" href="./css/home.css">
     <link rel="stylesheet" type="text/css" href="./css/highlights.css">
+    <link rel="stylesheet" type="text/css" href="./css/promotions.css">
+    <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <title>Bookery Studio</title>
 </head>
 
@@ -25,7 +27,7 @@
             </div>
             <div class="header-title">
                 <h1>BOOKERY</h1>
-                <h2>STUDIO</h2>
+                <h2>LIBRARY</h2>
             </div>
             <div class="header-items">
                 <a href="#">Sobre</a>
@@ -53,18 +55,18 @@
         <h1>destaques</h1>
 
         <div class="highlight-cards-container">
-            <div class="background-color"></div>
+            <div class="highlight-background-color"></div>
             <div class="highlight-products">
-                <div class="card">
-                    <img src="./img/circo-mecanico.png" alt="livro destaque">
-                    <span class="card-description">circo mecânico tresaulti</span>
+                <div class="highlight-card">
+                    <img src="./img/frankstein.png" alt="livro destaque">
+                    <span class="card-description">frankstein</span>
                 </div>
-                <div class="card">
+                <div class="highlight-card">
                     <img src="./img/ted-bundy.png" alt="livro destaque">
                     <span class="card-description">ted bundy - um estranho ao meu lado</span>
                 </div>
-                <div class="card">
-                    <img src="./img/livros-sangue.png" alt="livro destaque">
+                <div class="highlight-card">
+                    <img src="./img/livro-sangue.png" alt="livro destaque">
                     <span class="card-description">livros de sangue - volume 1</span>
                 </div>
             </div>
@@ -73,6 +75,62 @@
 
     <div class="separator"></div>
 
+    <section id="promotions">
+        <h1>promoções</h1>
+
+        <div class="promotions-cards-container">
+            <div class="promotion-background-color"></div>
+            <div class="promotion-products">
+                <div class="promotion-card">
+                    <div class="product">
+                        <img src="./img/menino-que-desenhava-monstros.png" alt="o menino que desenhava monstros">
+                    </div>
+                    <div class="description">
+                        <span class="title">O menino que desenhava monstros</span>
+                        <span class="old-price">R$ 48,30</span>
+                        <span class="new-price">R$ 56,63</span>
+                        <div class="see-more">
+                            <div class="line"></div>
+                            <a href="#" class="details">ver detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <div class="product">
+                        <img src="./img/demonologistas.png" alt="Ed & Lorraine Warren - demonologistas">
+                    </div>
+                    <div class="description">
+                        <span class="title">Ed & Lorraine Warren - demonologistas</span>
+                        <span class="old-price">R$ 39,20</span>
+                        <span class="new-price">R$ 27,44</span>
+                        <div class="see-more">
+                            <div class="line"></div>
+                            <a href="#" class="details">ver detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="promotion-card">
+                    <div class="product">
+                        <img src="./img/amityville.png" alt="amityville">
+                    </div>
+                    <div class="description">
+                        <span class="title">amityville</span>
+                        <span class="old-price">R$ 74,99</span>
+                        <span class="new-price">R$ 69,99</span>
+                        <div class="see-more">
+                            <div class="line"></div>
+                            <a href="#" class="details">ver detalhes</a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+    <div class="separator"></div>
+
+    <div class="footer-separator first"></div>
+
     <section id="footer">
         <div class="footer-description">
             <img src="./img/background-footer.png" alt="">
@@ -80,15 +138,24 @@
             <div class="footer-line"></div>
             <span class="footer-text">tornando páginas uma experiência exótica.</span>
         </div>
-        <div class="contact">
-            <span>bookery studio&reg;</span>
-            <span>bookeryinc@getbook.com</span>
-            <form>
 
+        <div class="footer-separator second"></div>
+
+        <div class="footer-data">
+            <div class="contact">
+                <span>bookery studio&reg;</span>
+                <span>bookeryinc@getbook.com</span>
+            </div>
+            <form name="frmCadastro" , method="post" , action="">
+                <div class="form">
+                    <span>fale com a gente.</span>
+                    <input id="placeholder-email" type="email" name="txtEmail" placeholder="seuemail@gmail.com" class="email">
+                    <textarea id="placeholder-obs" name="txtObs" placeholder="seu feedback é importante para nós" class="txtArea"></textarea>
+                    <input type="submit" name="btnEnviar" value="enviar" class="btnEnviar">
+                </div>
             </form>
         </div>
         
-
     </section>
 </body>
 
