@@ -4,7 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Rokkitt&display=swap" rel="stylesheet">
     <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+  />
+  <link rel="stylesheet" type="text/css" href="./css/highlights.css">
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+    <script type="module">
+        import Swiper from 'https://unpkg.com/swiper@8/swiper-bundle.esm.browser.min.js'
+        class Phone {
+            teste() {
+                console.log('aaa')
+                const swiper = new Swiper('.swiper', {
+                    direction: 'horizontal',
+                    loop: true,
+                    slidesPerView: 3, 
+                    spaceBetween: 30,
+                    freeMode: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+                    lazy: {
+                        loadPrevNext: true,
+                        loadPrevNextAmount: 3
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    scrollbar: {
+                        el: '.swiper-scrollbar',
+                    },
+                    
+                });
+
+
+
+
+            }
+        }
+
+        export default Phone
+        const teste = new Phone()
+        teste.teste()
+    </script>
+
 
     <style>
         * {
@@ -18,7 +66,7 @@
             width: 600px;
             margin: auto;
             margin-top: 20px;
-            
+
         }
 
         .slider li {
@@ -61,44 +109,170 @@
         }
 
         .slider img {
-    opacity: 0;
-    visibility: hidden;
-}
+            opacity: 0;
+            visibility: hidden;
+        }
 
-.slider li input:checked ~ img {
-    opacity: 1;
-    visibility: visible;
-    z-index: 10;
-}
+        .slider li input:checked~img {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
 
-        
+        header {
+            width: 100%;
+            height: 93.5px;
 
+            display: flex;
+        }
+
+        .header-items {
+            width: 100%;
+
+            display: flex;
+            flex-direction: row;
+            padding: 35px 20px;
+
+            font-family: 'Rokkitt', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        ul {
+            list-style-type: none;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+            margin-right: 20px;
+        }
+
+        li a,
+        .dropbtn {
+            display: inline-block;
+            color: black;
+            text-align: center;
+
+            text-decoration: none;
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black;
+            width: 100%;
+
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .swiper {
+            height: 600px;
+        }
     </style>
 </head>
 
 <body>
 
-    <ul class="slider">
+    <header>
+        <ul class="header-items">
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Compre</a>
+                <div class="dropdown-content">
+                    <a href="#">crime scene</a>
+                    <a href="#">distopias</a>
+                    <a href="#">fantasia</a>
+                    <a href="#">ficção</a>
+                    <a href="#">gótico</a>
+                    <a href="#">horror</a>
+                    <a href="#">sobrenatural</a>
+                    <a href="#">thriller e suspense</a>
+                    <a href="#">magia e bruxaria</a>
+                </div>
+            </li>
+            <li><a href="#">Promoções</a></li>
+            <li><a href="#">Destaques</a></li>
+        </ul>
+        <div class="header-title">
+            <h1>BOOKERY</h1>
+            <h2>LIBRARY</h2>
+        </div>
+        <ul class="header-items">
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Contate-nos</a></li>
+        </ul>
+    </header>
+
+    <!-- <ul class="slider">
         <li>
             <input type="radio" id="slide1" name="slide" checked>
             <label for="slide1"></label>
-            <img src="./img/circo-mecanico.png" alt="">
-            <input type="radio" id="slide2" name="slide" checked>
-            <label for="slide2"></label>
-            <img src="./img/ted-bundy.png" alt="">
+            <img src="./img/amityville.png" alt="">
         </li>
         <li>
             <input type="radio" id="slide2" name="slide" checked>
             <label for="slide2"></label>
-            <img src="./img/ted-bundy.png" alt="">
+            <img src="./img/frankstein.png" alt="">
         </li>
         <li>
             <input type="radio" id="slide3" name="slide" checked>
             <label for="slide3"></label>
-            <img src="./img/livros-sangue.png" alt="">
+            <img src="./img/livro-sangue.png" alt="">
         </li>
 
-    </ul>
+    </ul> -->
+
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <div class="highlight-card">
+                    <img src="./img/frankstein.png" alt="livro destaque">
+                    <span class="card-description">frankstein</span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="highlight-card">
+                    <img src="./img/ted-bundy.png" alt="livro destaque">
+                    <span class="card-description">ted bundy - um estranho ao meu lado</span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="highlight-card">
+                    <img src="./img/livro-sangue.png" alt="livro destaque">
+                    <span class="card-description">livros de sangue - volume 1</span>
+                </div>
+            </div>
+            ...
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </div>
 
 </body>
 

@@ -14,26 +14,41 @@
     <link rel="stylesheet" type="text/css" href="./css/highlights.css">
     <link rel="stylesheet" type="text/css" href="./css/promotions.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <script type="module" src="js/slider/index.js"></script>
     <title>Bookery Studio</title>
 </head>
 
 <body>
     <header>
-        <div class="container-header-items">
-            <div class="header-items">
-                <a href="#">Compre</a>
-                <a href="#">Promoções</a>
-                <a href="#">Destaques</a>
-            </div>
+        <ul class="header-items">
+            <li class="dropdown-items hover">
+                <a href="#" class="dropdown-link" id="dropdown-link">Compre</a>
+                <div class="dropdown-content">
+                    <div class="items hover">
+                        <a href="#">crime scene</a>
+                        <a href="#">distopias</a>
+                        <a href="#">fantasia</a>
+                        <a href="#">ficção</a>
+                        <a href="#">gótico</a>
+                        <a href="#">horror</a>
+                        <a href="#">sobrenatural</a>
+                        <a href="#">thriller e suspense</a>
+                        <a href="#">magia e bruxaria</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="#">Promoções</a></li>
+            <li><a href="#">Destaques</a></li>
             <div class="header-title">
                 <h1>BOOKERY</h1>
                 <h2>LIBRARY</h2>
             </div>
-            <div class="header-items">
-                <a href="#">Sobre</a>
-                <a href="#">Contate-nos</a>
-            </div>
-        </div>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Contate-nos</a></li>
+        </ul>
+
     </header>
 
     <div class="header-line"></div>
@@ -54,21 +69,29 @@
     <section id="highlights">
         <h1>destaques</h1>
 
-        <div class="highlight-cards-container">
+        <div id="highlight-cards-container">
             <div class="highlight-background-color"></div>
-            <div class="highlight-products">
-                <div class="highlight-card">
-                    <img src="./img/frankstein.png" alt="livro destaque">
-                    <span class="card-description">frankstein</span>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="./img/frankstein.png" alt="livro destaque">
+                        <span class="card-description">frankstein</span>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./img/ted-bundy.png" alt="livro destaque">
+                        <span class="card-description">ted bundy - um estranho ao meu lado</span>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./img/livro-sangue.png" alt="livro destaque">
+                        <span class="card-description">livros de sangue - volume 1</span>
+                    </div>
                 </div>
-                <div class="highlight-card">
-                    <img src="./img/ted-bundy.png" alt="livro destaque">
-                    <span class="card-description">ted bundy - um estranho ao meu lado</span>
-                </div>
-                <div class="highlight-card">
-                    <img src="./img/livro-sangue.png" alt="livro destaque">
-                    <span class="card-description">livros de sangue - volume 1</span>
-                </div>
+
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-scrollbar grey"></div>
+
             </div>
         </div>
     </section>
@@ -79,7 +102,7 @@
         <h1>promoções</h1>
 
         <div class="promotions-cards-container">
-            <div class="promotion-background-color"></div>
+            <!-- <div class="promotion-background-color"></div> -->
             <div class="promotion-products">
                 <div class="promotion-card">
                     <div class="product">
@@ -122,7 +145,7 @@
                             <a href="#" class="details">ver detalhes</a>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </section>
@@ -149,13 +172,15 @@
             <form name="frmCadastro" , method="post" , action="">
                 <div class="form">
                     <span>fale com a gente.</span>
-                    <input id="placeholder-email" type="email" name="txtEmail" placeholder="seuemail@gmail.com" class="email">
-                    <textarea id="placeholder-obs" name="txtObs" placeholder="seu feedback é importante para nós" class="txtArea"></textarea>
+                    <input id="placeholder-email" type="email" name="txtEmail" placeholder="seuemail@gmail.com"
+                        class="email">
+                    <textarea id="placeholder-obs" name="txtObs" placeholder="seu feedback é importante para nós"
+                        class="txtArea"></textarea>
                     <input type="submit" name="btnEnviar" value="enviar" class="btnEnviar">
                 </div>
             </form>
         </div>
-        
+
     </section>
 </body>
 

@@ -1,54 +1,30 @@
 header {
     width: 100%;
     height: 93.5px;
-}
 
-header .header-items {
-    padding: 35px 20px;
-}
-
-.container-header-items {
     display: flex;
-
-    text-align: center;
 }
 
-.header-items a {
-    position: relative;
+.header-items {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+   
 
     font-family: 'Rokkitt', serif;
     font-size: 1.8rem;
     font-weight: 400;
     font-style: normal;
-
-    color: black;
-    text-decoration: none;
-
-    margin-right: 20px;
 }
 
-.header-items a:after {
-    content: "";
-
-    display: block;
-    position: absolute;
-
-    width: 0;
-    height: 2px;
-    
-    background: #000;
-    
-    transition: width 0.5s ease 0s, left 0.5s ease 0s;
-    left: 50%;   
-}
-
-.header-items a:hover:after {
-    width: 100%; 
-    left: 0; 
+.header-items li {
+    padding-top: 35px;
 }
 
 .header-title {
     margin: auto;
+    text-align: center;
 }
 
 .header-title h1, h2 {
@@ -67,6 +43,95 @@ header .header-items {
     font-style: normal;
 }
 
+ul {
+    list-style: none;
+    overflow: hidden; 
+}
+
+li {
+    float: left;
+    margin-right: 20px;
+}
+
+.dropdown-link {
+    padding-left: 20px;
+}
+
+li a,
+.dropdown-link {
+    display: inline-block;
+
+    text-decoration: none;
+    text-align: center;
+    color: black;
+}
+
+li .dropdown-items {
+    display: inline-block;
+}
+
+.dropdown-content {
+    width: 100%;
+    height: 363px;
+
+    display: none;
+    position: absolute;
+    top: 92px;
+
+    background-color: black;
+    
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: flex;
+
+    padding: 20px 20px;
+    line-height: 10px;
+    
+    text-decoration: none;
+    text-align: left;
+    color: white;
+}
+
+.items {
+    width: auto;
+    height: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-right: 140px;
+}
+
+.items a {
+    width: calc((100% / 2) - 1.5rem);
+}
+
+.dropdown-items:hover .dropdown-content {
+    display: block;
+}
+
+/* .header-items li:after {
+    content: "";
+
+    display: block;
+    position: absolute;
+
+    width: 0;
+    height: 2px;
+    
+    background: #000;
+    
+    transition: width 0.5s ease 0s, left 0.5s ease 0s;
+    left: 50%;   
+}
+
+.header-items li:hover:after {
+    width: 100%; 
+    left: 0; 
+} */
+
 .header-line {
     width: 100%;
 
@@ -74,4 +139,3 @@ header .header-items {
 
     border: 1px solid #000;
 }
-

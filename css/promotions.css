@@ -33,9 +33,13 @@
     justify-content: center;
 }
 
+.promotion-products {
+   
+}
+
 .promotion-card {
     width: 400px;
-    height: 671px;
+    height: 677px;
 
     margin-right: 56px;
 }
@@ -66,6 +70,8 @@
 } 
 
 .description .title {
+    min-height: 52px;
+
     font-size: 1.5rem;
     font-weight: 700;
     text-align: start;
@@ -101,6 +107,7 @@
     font-size: 1.5rem;
     font-weight: 700;
 
+    line-height: 15px;
     text-decoration: none;
 
     color: white;
@@ -109,4 +116,6 @@
 .see-more {
     text-align: center;
 }
+
+
 
