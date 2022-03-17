@@ -13,10 +13,12 @@
     <link rel="stylesheet" type="text/css" href="./css/home.css">
     <link rel="stylesheet" type="text/css" href="./css/highlights.css">
     <link rel="stylesheet" type="text/css" href="./css/promotions.css">
+    <link rel="stylesheet" type="text/css" href="./css/catalogue.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
 
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <script type="module" src="js/slider/index.js"></script>
+    <script src="js/home/catalogue.js" defer></script>
     <title>Bookery Studio</title>
 </head>
 
@@ -26,7 +28,7 @@
             <li class="dropdown-items hover">
                 <a href="#" class="dropdown-link" id="dropdown-link">Compre</a>
                 <div class="dropdown-content">
-                    <div class="items hover">
+                    <div class="items-hover">
                         <a href="#">crime scene</a>
                         <a href="#">distopias</a>
                         <a href="#">fantasia</a>
@@ -70,7 +72,6 @@
         <h1>destaques</h1>
 
         <div id="highlight-cards-container">
-            <div class="highlight-background-color"></div>
             <div class="swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -102,55 +103,75 @@
         <h1>promoções</h1>
 
         <div class="promotions-cards-container">
-            <!-- <div class="promotion-background-color"></div> -->
-            <div class="promotion-products">
-                <div class="promotion-card">
-                    <div class="product">
-                        <img src="./img/menino-que-desenhava-monstros.png" alt="o menino que desenhava monstros">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="promotion-card">
+                            <div class="product">
+                                <img src="./img/menino-que-desenhava-monstros.png"
+                                    alt="o menino que desenhava monstros">
+                            </div>
+                            <div class="description">
+                                <span class="title">o menino que desenhava monstros</span>
+                                <span class="old-price">R$ 48,30</span>
+                                <span class="new-price">R$ 56,63</span>
+                                <div class="see-more">
+                                    <div class="line"></div>
+                                    <a href="#" class="details">ver detalhes</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="description">
-                        <span class="title">O menino que desenhava monstros</span>
-                        <span class="old-price">R$ 48,30</span>
-                        <span class="new-price">R$ 56,63</span>
-                        <div class="see-more">
-                            <div class="line"></div>
-                            <a href="#" class="details">ver detalhes</a>
+                    <div class="swiper-slide">
+                        <div class="promotion-card">
+                            <div class="product">
+                                <img src="./img/demonologistas.png" alt="Ed & Lorraine Warren - demonologistas">
+                            </div>
+                            <div class="description">
+                                <span class="title">ed & lorraine warren - demonologistas</span>
+                                <span class="old-price">R$ 39,20</span>
+                                <span class="new-price">R$ 27,44</span>
+                                <div class="see-more">
+                                    <div class="line"></div>
+                                    <a href="#" class="details">ver detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="promotion-card">
+                            <div class="product">
+                                <img src="./img/amityville.png" alt="amityville">
+                            </div>
+                            <div class="description">
+                                <span class="title">amityville</span>
+                                <span class="old-price">R$ 74,99</span>
+                                <span class="new-price">R$ 69,99</span>
+                                <div class="see-more">
+                                    <div class="line"></div>
+                                    <a href="#" class="details">ver detalhes</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="promotion-card">
-                    <div class="product">
-                        <img src="./img/demonologistas.png" alt="Ed & Lorraine Warren - demonologistas">
-                    </div>
-                    <div class="description">
-                        <span class="title">Ed & Lorraine Warren - demonologistas</span>
-                        <span class="old-price">R$ 39,20</span>
-                        <span class="new-price">R$ 27,44</span>
-                        <div class="see-more">
-                            <div class="line"></div>
-                            <a href="#" class="details">ver detalhes</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="promotion-card">
-                    <div class="product">
-                        <img src="./img/amityville.png" alt="amityville">
-                    </div>
-                    <div class="description">
-                        <span class="title">amityville</span>
-                        <span class="old-price">R$ 74,99</span>
-                        <span class="new-price">R$ 69,99</span>
-                        <div class="see-more">
-                            <div class="line"></div>
-                            <a href="#" class="details">ver detalhes</a>
-                        </div>
-                    </div>
-                </div>
+
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-scrollbar"></div>
+
             </div>
         </div>
     </section>
 
     <div class="separator"></div>
+
+    <section id="catalogue">
+        <h1>Catálogo</h1>
+
+        <article id="session"></article>
+    </section>
 
     <div class="footer-separator first"></div>
 

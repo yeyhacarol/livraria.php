@@ -7,12 +7,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Rokkitt&display=swap" rel="stylesheet">
     <title>Document</title>
-    <link
-    rel="stylesheet"
-    href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-  />
-  <link rel="stylesheet" type="text/css" href="./css/highlights.css">
-  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/highlights.css">
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
     <script type="module">
         import Swiper from 'https://unpkg.com/swiper@8/swiper-bundle.esm.browser.min.js'
@@ -22,7 +19,7 @@
                 const swiper = new Swiper('.swiper', {
                     direction: 'horizontal',
                     loop: true,
-                    slidesPerView: 3, 
+                    slidesPerView: 3,
                     spaceBetween: 30,
                     freeMode: true,
                     pagination: {
@@ -39,7 +36,7 @@
                     scrollbar: {
                         el: '.swiper-scrollbar',
                     },
-                    
+
                 });
 
 
@@ -261,6 +258,39 @@
                     <span class="card-description">livros de sangue - volume 1</span>
                 </div>
             </div>
+            ...
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <div class="product">
+                    <img src="./img/menino-que-desenhava-monstros.png" alt="o menino que desenhava monstros">
+                </div>
+                <div class="description">
+                    <span class="title">O menino que desenhava monstros</span>
+                    <span class="old-price">R$ 48,30</span>
+                    <span class="new-price">R$ 56,63</span>
+                    <div class="see-more">
+                        <div class="line"></div>
+                        <a href="#" class="details">ver detalhes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
             ...
         </div>
         <!-- If we need pagination -->

@@ -33,15 +33,12 @@
     justify-content: center;
 }
 
-.promotion-products {
-   
-}
-
 .promotion-card {
     width: 400px;
     height: 677px;
 
     margin-right: 56px;
+    margin-bottom: 40px;
 }
 
 .product {
@@ -52,22 +49,19 @@
 }
 
 .description {
-    width: 400px;
-    height: 200px;
-
-    padding: 10px 15px;
-
-    background-color: #2D2D2D;
-}
-
-.promotion-products .description {
     font-family: 'Inconsolata', monospace;
     color: white;
+
+    width: 400px;
+    height: 200px;
 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-} 
+    padding: 10px 15px;
+
+    background-color: #2D2D2D;
+}
 
 .description .title {
     min-height: 52px;
@@ -116,6 +110,5 @@
 .see-more {
     text-align: center;
 }
-
 
 
