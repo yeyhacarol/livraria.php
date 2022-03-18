@@ -6,7 +6,7 @@ const catalogueDb = [
         name: 'antologia dark',
         oldPrice: 'R$ 54,90',
         newPrice: 'R$ 49,41',
-        image: '../img/antologia-dark.png',
+        image: './img/antologia-dark.png',
         gender: '',
     },
     {
@@ -14,7 +14,7 @@ const catalogueDb = [
         name: 'evangelho de sangue',
         oldPrice: '',
         newPrice: 'R$ 41,90',
-        image: '../img/evangelho-sangue.png',
+        image: './img/evangelho-sangue.png',
         gender: '',
     },
     {
@@ -22,7 +22,7 @@ const catalogueDb = [
         name: 'legião',
         oldPrice: '',
         newPrice: 'R$ 31,80',
-        image: '../img/legiao.png',
+        image: './img/legiao.png',
         gender: '',
     },
     {
@@ -30,7 +30,7 @@ const catalogueDb = [
         name: 'medicina macabra',
         oldPrice: '',
         newPrice: 'R$ 43,90',
-        image: '../img/medicina-macabra.png',
+        image: './img/medicina-macabra.png',
         gender: '',
     },
     {
@@ -38,7 +38,7 @@ const catalogueDb = [
         name: 'vitorianas macabras',
         oldPrice: 'R$ 43,90',
         newPrice: 'R$ 36,87',
-        image: '../img/vitorianas-macabras.png',
+        image: './img/vitorianas-macabras.png',
         gender: '',
     },
     {
