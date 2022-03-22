@@ -68,6 +68,10 @@ input, button {
     font-style: normal;
 }
 
+.search-area {
+    display: flex;
+}
+
 ul {
     list-style: none;
     overflow: hidden; 

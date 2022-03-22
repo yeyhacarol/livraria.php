@@ -1,0 +1,175 @@
+#modal {
+    opacity: 0;
+    z-index: -1;
+}
+
+#modal.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.modal-content {
+    width: 800px;
+    height: 750px;
+
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+    background-color: #2D2D2D;
+
+    font-family: 'Rokkitt', serif;
+    color: white;
+}
+
+#modal .book-gender {
+    padding-top: 59px;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    margin-bottom: 30px;
+}
+
+.book-gender {
+    width: 330px;
+    height: 487px;
+
+    display: flex;
+    flex-direction: column;
+    
+    margin-right: 25px;
+}
+
+.book-gender img {
+    width: 330px;
+    height: 487px;
+
+    margin-bottom: 10px;
+
+    background-color: white;
+}
+
+.book-gender span {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.book-info {
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.book-info span {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.book-info span:nth-child(2) {
+    margin-bottom: 25px;
+}
+
+.book-info p {
+    font-size: 1.5rem;
+    text-align: justify;
+}
+
+.line {
+    border: 1px solid white;
+
+    margin-bottom: 30px;
+}
+
+.modal-content .finish {
+    padding-left: 59px;
+}
+
+.finish {
+    display: flex;
+    flex-direction: row;
+}
+
+.freight-area {
+    display: flex;
+    flex-direction: column;
+
+    margin-right: 20%;
+}
+
+.freight-area span {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.freight-area label {
+    font-size: 1.3rem;
+}
+
+input, 
+button {
+    border: 1px solid white;
+    font-family: 'Rokkitt', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-style: normal;
+}
+
+input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+input {
+    width: 200px;
+    height: 35px;
+}
+
+button {
+    width: 50px;
+    height: 35px;
+
+    color: white;
+    background: transparent;
+    cursor: pointer;
+}
+
+.prices {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 1.4rem;
+}
+
+.subtotal, .total {
+    display: flex;
+    flex-direction: row;
+
+    gap: 59px;
+}
+
+.subtotal {
+    margin-bottom: 30px;
+}
+
+.total {
+    gap: 92px;
+}
+
+.value {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+

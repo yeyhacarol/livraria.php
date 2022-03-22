@@ -113,7 +113,7 @@ const creatingCard = (product) => {
             </div>
             <div class="see-more">
                 <div class="line"></div>
-                <a href="#" class="details">ver detalhes</a>
+                <a href="#" class="details" data-id="${product.id}">ver detalhes</a>
             </div>
         </div>`
 
@@ -127,4 +127,71 @@ const loadingCatalogue = (products) => {
     container.replaceChildren(...cards)
 }
 
+const createModal = () => {
+    const modalCard = document.createElement('div')
+    modalCard.classList.add('modal-container')
+    modalCard.innerHTML = 
+    `<div id="modal">
+        <div class="modal-content">
+            <div class="top">
+                <div class="book-gender">
+                    <img src="img/amityville.png">
+                    <span>categoria</span>
+                </div>
+                <div class="book-info">
+                    <span>title</span>
+                    <span>author</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam tempor eu eros eget rhoncus. Fusce placerat nulla
+                    vel sagittis auctor. Interdum et malesuada fames ac ante
+                    ipsum primis in faucibus. Etiam volutpat condimentum
+                    tellus facilisis tincidunt. Nunc bibendum, felis eget sodales
+                    dapibus, massa purus pretium mi, quis elementum mi elit quis velit.
+                    Integer ut luctus odio, efficitur congue arcu. Cras porttitor posuere metus,
+                    tempor efficitur ipsum elementum quis. Aenean a neque porttitor lectus.
+                    </p>
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="finish">
+                <div class="freight-area">
+                    <span>Calcular entrega</span>
+                    <label>CEP</label>
+                    <div class="input-cep">
+                        <input type="search">
+                        <button type="submit">ok</button>
+                    </div>
+                </div>
+                <div class="prices">
+                    <div class="subtotal">
+                        <span>subtotal</span>
+                        <div class="value">
+                            <span>value</span>
+                            <span>value</span>
+                        </div>
+                    </div>
+                    <div class="total">
+                        <span>total</span>
+                        <div class="value">
+                            <span>value</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`
+
+    return modalCard
+}
+
+const modalGenerator = () => {
+    document.getElementById('modal').classList.add('active')
+}
+
 loadingCatalogue(catalogueDb)
+
+
+document.querySelectorAll('.details')
+    .forEach(details => details.addEventListener('click', function(event){console.log(event.target.dataset.id), 
+        console.log(event), catalogueDb.filter(catalogueItem => {return catalogueItem.id == event.target.dataset.id})}))
+
