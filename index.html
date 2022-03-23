@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="./css/home.css">
     <link rel="stylesheet" type="text/css" href="./css/highlights.css">
     <link rel="stylesheet" type="text/css" href="./css/promotions-catalogue.css">
-    <link rel="stylesheet" type="text/css" href="./css/catalogue.css">
     <link rel="stylesheet" type="text/css" href="./css/modal.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
 
@@ -43,21 +42,21 @@
                     </div>
                 </div>
             </li>
-            <li><a href="#">Promoções</a></li>
-            <li><a href="#">Destaques</a></li>
-            <div class="header-title">
-                <h1>BOOKERY</h1>
-                <h2>LIBRARY</h2>
-            </div>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Contate-nos</a></li>
-            <li>
-                <div class="search-area">
-                    <input type="search" placeholder="buscar" class="search">
-                    <button type="submit">ok</button>
-                </div>
-            </li>    
+            <li><a href="#promotions">Promoções</a></li>
+            <li><a href="#highlights">Destaques</a></li>
         </ul>
+        <div class="header-title">
+            <h1>BOOKERY</h1>
+            <h2>LIBRARY</h2>
+        </div>
+        <ul class="header-items">
+            <li><a href="#footer">Sobre</a></li>
+            <li><a href="#footer">Contate-nos</a></li>
+        </ul>
+        <div class="search-area">
+            <input type="search" placeholder="buscar" class="search">
+            <button type="submit" class="header-button">ok</button>
+        </div>
     </header>
 
     <div class="header-line"></div>
@@ -68,7 +67,7 @@
             <div class="container-home-items">
                 <h3>bookery studio&reg;</h3>
                 <h2>construa sua mente.</h2>
-                <div class="shop-button"><a href="#">comprar</a></div>
+                <div class="shop-button"><a href="#catalogue">comprar</a></div>
             </div>
         </div>
     </section>
@@ -197,7 +196,7 @@
                 <span>bookery studio&reg;</span>
                 <span>bookeryinc@getbook.com</span>
             </div>
-            <form name="frmCadastro" , method="post" , action="">
+            <form name="frmCadastro" method="post" action="index.html">
                 <div class="form">
                     <span>fale com a gente.</span>
                     <input id="placeholder-email" type="email" name="txtEmail" placeholder="seuemail@gmail.com"

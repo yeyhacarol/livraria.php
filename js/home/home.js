@@ -37,9 +37,9 @@ const catalogueDb = [
     {
         id: 1,
         title: 'antologia dark',
-        author: '',
-        description: '',
-        gender: '',
+        author: 'Cesar Bravo',
+        description: 'uma homenagem à obra de Stephen King e um agradecimento por suas palavras terem formado leitores e vidas. A antologia é o primeiro volume de uma coleção que vai promover a importância do conto no universo do horror e o diálogo entre autores nacionais e grandes mestres da literatura dark.',
+        gender: 'ficção',
         oldPrice: 'R$ 54,90',
         newPrice: 'R$ 49,41',
         image: './img/antologia-dark.png',
@@ -87,8 +87,8 @@ const catalogueDb = [
     {
         id: 6,
         title: 'btk profile: máscara da maldade',
-        author: 'Brie Larson',
-        description: 'o demonologista revela o grave processo religioso por trás de eventos sobrenaturais e como isso pode acontecer com você. Usado como texto em seminários e salas de aula, este é um livro que você não consegue largar. Por mais de cinco décadas, Ed e Loraine Warren foram considerados os maiores especialistas da América em demonologia e exorcismo. Com mais de 3.000 investigações em seu crédito, eles revelam o que realmente quebra a paz em casas assombradas.',
+        author: '',
+        description: '',
         gender: 'terror',
         oldPrice: '',
         newPrice: 'R$ 53,90',
@@ -150,28 +150,28 @@ const createModal = (catalogueItem) => {
                     <span>Calcular entrega</span>
                     <label>CEP</label>
                     <div class="input-cep">
-                        <input type="search">
-                        <button type="submit">ok</button>
+                        <input type="search" class="search-cep">
+                        <button type="submit" class="calculate-cep">ok</button>
                     </div>
                 </div>
                 <div class="prices">
                     <div class="subtotal">
                         <span>subtotal</span>
                         <div class="value">
-                            <span>value</span>
-                            <span>value</span>
+                            <span>${catalogueItem.oldPrice}</span>
                         </div>
                     </div>
                     <div class="total">
                         <span>total</span>
                         <div class="value">
-                            <span>value</span>
+                            <span>${catalogueItem.newPrice}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>`
+
     document.getElementById('modal-content').replaceChildren(modalCard)
     document.getElementById('close-button').addEventListener('click', closeModal)
     
@@ -182,21 +182,25 @@ const modalGenerator = () => {
     document.getElementById('modal-container').classList.toggle('active')
 }
 
-loadingCatalogue(catalogueDb)
+const closeModal = () => {
+    document.getElementById('modal-container').classList.remove('active')
+}
 
-document.querySelectorAll('.details')
-.forEach(details => details.addEventListener('click', function(event){
+const findCatalogueItem = (event) => {
     event.preventDefault()
     let catalogueItem = catalogueDb.filter(item => {
         return item.id == event.target.dataset.id
     })[0]
     createModal(catalogueItem)
     modalGenerator()
-}))
-
-const closeModal = () => {
-    document.getElementById('modal-container').classList.remove('active')
 }
+
+document.querySelectorAll('.details')
+    .forEach(details => details.addEventListener('click', findCatalogueItem))
+
+loadingCatalogue(catalogueDb)
+
+
 
 
 
