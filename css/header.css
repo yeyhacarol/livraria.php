@@ -51,7 +51,7 @@ input {
     -webkit-appearance: none;
 }
 
-button {
+.header-items button {
    width: 50px;
    height: 35px;
 

@@ -87,8 +87,8 @@ const catalogueDb = [
     {
         id: 6,
         title: 'btk profile: máscara da maldade',
-        author: '',
-        description: '',
+        author: 'Brie Larson',
+        description: 'o demonologista revela o grave processo religioso por trás de eventos sobrenaturais e como isso pode acontecer com você. Usado como texto em seminários e salas de aula, este é um livro que você não consegue largar. Por mais de cinco décadas, Ed e Loraine Warren foram considerados os maiores especialistas da América em demonologia e exorcismo. Com mais de 3.000 investigações em seu crédito, eles revelam o que realmente quebra a paz em casas assombradas.',
         gender: 'terror',
         oldPrice: '',
         newPrice: 'R$ 53,90',
@@ -96,7 +96,6 @@ const catalogueDb = [
     },
 
 ]
-
 
 const creatingCard = (product) => {
     const catalogueCard = document.createElement('div')
@@ -127,29 +126,22 @@ const loadingCatalogue = (products) => {
     container.replaceChildren(...cards)
 }
 
-const createModal = () => {
+const createModal = (catalogueItem) => {
     const modalCard = document.createElement('div')
-    modalCard.classList.add('modal-container')
+    modalCard.setAttribute('id', 'modal-container')
     modalCard.innerHTML = 
     `<div id="modal">
         <div class="modal-content">
             <div class="top">
                 <div class="book-gender">
-                    <img src="img/amityville.png">
-                    <span>categoria</span>
+                    <button id="close-button">X</button>
+                    <img src="${catalogueItem.image}">
+                    <span>${catalogueItem.gender}</span>
                 </div>
                 <div class="book-info">
-                    <span>title</span>
-                    <span>author</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Etiam tempor eu eros eget rhoncus. Fusce placerat nulla
-                    vel sagittis auctor. Interdum et malesuada fames ac ante
-                    ipsum primis in faucibus. Etiam volutpat condimentum
-                    tellus facilisis tincidunt. Nunc bibendum, felis eget sodales
-                    dapibus, massa purus pretium mi, quis elementum mi elit quis velit.
-                    Integer ut luctus odio, efficitur congue arcu. Cras porttitor posuere metus,
-                    tempor efficitur ipsum elementum quis. Aenean a neque porttitor lectus.
-                    </p>
+                    <span>${catalogueItem.title}</span>
+                    <span>${catalogueItem.author}</span>
+                    <p>${catalogueItem.description}</p>
                 </div>
             </div>
             <div class="line"></div>
@@ -180,18 +172,32 @@ const createModal = () => {
             </div>
         </div>
     </div>`
-
+    document.getElementById('modal-content').replaceChildren(modalCard)
+    document.getElementById('close-button').addEventListener('click', closeModal)
+    
     return modalCard
 }
 
 const modalGenerator = () => {
-    document.getElementById('modal').classList.add('active')
+    document.getElementById('modal-container').classList.toggle('active')
 }
 
 loadingCatalogue(catalogueDb)
 
-
 document.querySelectorAll('.details')
-    .forEach(details => details.addEventListener('click', function(event){console.log(event.target.dataset.id), 
-        console.log(event), catalogueDb.filter(catalogueItem => {return catalogueItem.id == event.target.dataset.id})}))
+.forEach(details => details.addEventListener('click', function(event){
+    event.preventDefault()
+    let catalogueItem = catalogueDb.filter(item => {
+        return item.id == event.target.dataset.id
+    })[0]
+    createModal(catalogueItem)
+    modalGenerator()
+}))
+
+const closeModal = () => {
+    document.getElementById('modal-container').classList.remove('active')
+}
+
+
+
 
