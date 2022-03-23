@@ -2,15 +2,19 @@
     display: none;
     position: fixed;
     top: 0;
-    margin-top: 30px;
     left: 0;
     right: 0;
-    z-index: 10000;
+
+    padding-top: 5%;
+    z-index: 100;
 } 
 
 #modal-container.active {
-   display: block;
-   opacity: #0009;
+    width: 100vw;
+    height: 100vh;
+
+    display: block;
+    background: rgba(0, 0, 0, 0.774);
 }
 
 .modal-content {
@@ -21,14 +25,12 @@
     display: flex;
     flex-direction: column;
 
+    padding: 20px;
+
     background-color: #2D2D2D;
 
     font-family: 'Rokkitt', serif;
     color: white;
-}
-
-#modal .book-gender {
-    padding-top: 59px;
 }
 
 .top {
@@ -37,6 +39,20 @@
     justify-content: center;
 
     margin-bottom: 30px;
+}
+
+#close-button {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 30px;
+
+    border: 1px solid white;
+    background: transparent;
+
+    font-family: 'Inconsolota', monospace;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
 }
 
 .book-gender {
@@ -117,8 +133,8 @@
     font-size: 1.3rem;
 }
 
-input, 
-button {
+.search-cep, 
+.calculate-cep {
     border: 1px solid white;
     font-family: 'Rokkitt', serif;
     font-size: 1.3rem;
@@ -126,16 +142,16 @@ button {
     font-style: normal;
 }
 
-input::-webkit-search-cancel-button {
+.search-cep::-webkit-search-cancel-button {
     -webkit-appearance: none;
 }
 
-input {
+.search-cep {
     width: 200px;
     height: 35px;
 }
 
-button {
+.calculate-cep {
     width: 50px;
     height: 35px;
 

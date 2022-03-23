@@ -150,32 +150,36 @@ const createModal = (catalogueItem) => {
                     <span>Calcular entrega</span>
                     <label>CEP</label>
                     <div class="input-cep">
-                        <input type="search">
-                        <button type="submit">ok</button>
+                        <input type="search" class="search-cep">
+                        <button type="submit" class="calculate-cep">ok</button>
                     </div>
                 </div>
                 <div class="prices">
                     <div class="subtotal">
                         <span>subtotal</span>
                         <div class="value">
-                            <span>value</span>
-                            <span>value</span>
+                            <span>${catalogueItem.oldPrice}</span>
                         </div>
                     </div>
                     <div class="total">
                         <span>total</span>
                         <div class="value">
-                            <span>value</span>
+                            <span>${catalogueItem.newPrice}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>`
+
     document.getElementById('modal-content').replaceChildren(modalCard)
     document.getElementById('close-button').addEventListener('click', closeModal)
     
     return modalCard
+}
+
+const closeModal = () => {
+    document.getElementById('modal-container').classList.remove('active')
 }
 
 const modalGenerator = () => {
@@ -194,9 +198,6 @@ document.querySelectorAll('.details')
     modalGenerator()
 }))
 
-const closeModal = () => {
-    document.getElementById('modal-container').classList.remove('active')
-}
 
 
 
