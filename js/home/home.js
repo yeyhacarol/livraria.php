@@ -112,7 +112,7 @@ const creatingCard = (product) => {
             </div>
         </div>
         <div class="description details">
-            <div class="line"></div>
+        <div class="line"></div>
             <div class="see-more">
                 <a href="#" class="details" data-id="${product.id}">ver detalhes</a>
             </div>
