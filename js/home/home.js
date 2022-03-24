@@ -150,8 +150,11 @@ const createModal = (catalogueItem) => {
                     <span>Calcular entrega</span>
                     <label>CEP</label>
                     <div class="input-cep">
-                        <input type="search" class="search-cep">
-                        <button type="submit" class="calculate-cep">ok</button>
+                        <input type="search" class="search-cep" id="cep">
+                        <button type="submit" id="calculate-cep">ok</button>
+                    </div>
+                    <div class="cep-results">
+                        <span id="adress"></span>
                     </div>
                 </div>
                 <div class="prices">
@@ -178,12 +181,12 @@ const createModal = (catalogueItem) => {
     return modalCard
 }
 
-const closeModal = () => {
-    document.getElementById('modal-container').classList.remove('active')
-}
-
 const modalGenerator = () => {
     document.getElementById('modal-container').classList.toggle('active')
+}
+
+const closeModal = () => {
+    document.getElementById('modal-container').classList.remove('active')
 }
 
 loadingCatalogue(catalogueDb)
