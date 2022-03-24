@@ -6,8 +6,6 @@ header {
 }
 
 .header-items {
-    width: 100%;
-
     display: flex;
     flex-direction: row;
 
@@ -26,8 +24,6 @@ header .search-area {
 }
 
 .header-title {
-    width: 100%; /* to resolve! */
-
     margin: auto;
     text-align: center;
 }
