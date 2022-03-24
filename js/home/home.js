@@ -144,7 +144,7 @@ const createModal = (catalogueItem) => {
                     <p>${catalogueItem.description}</p>
                 </div>
             </div>
-            <div class="line"></div>
+            <div class="modal-line"></div>
             <div class="finish">
                 <div class="freight-area">
                     <span>Calcular entrega</span>
