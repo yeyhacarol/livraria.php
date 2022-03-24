@@ -110,11 +110,15 @@ const creatingCard = (product) => {
                 <span class="old-price">${product.oldPrice}</span>
                 <span class="new-price">${product.newPrice}</span>
             </div>
+        </div>
+        <div class="description details">
+            <div class="line"></div>
             <div class="see-more">
-                <div class="line"></div>
                 <a href="#" class="details" data-id="${product.id}">ver detalhes</a>
             </div>
         </div>`
+
+        
 
     return catalogueCard
 }
