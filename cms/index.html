@@ -14,22 +14,24 @@
 <body>
     <header>
         <h2>ACESSO A</h2>
-        <h1>BOOKERY LIBRARY </h1>
+        <h1>BOOKERY LIBRARY</h1>
     </header>
 
-    <div class="header-line"></div>
+    <div class="line"></div>
 
     <form name="frmLogin" , method="POST" , action="">
         <div class="user-area">
             <label>Usuário</label>
-            <input type="text" name="user">
+            <input type="text" name="user" required>
         </div>
         <div class="code-area">
             <label>Senha</label>
-            <input type="password" name="passwd">
+            <input type="password" name="passwd" required>
         </div>
-        <input type="submit" name="btnAcessar" value="ENTRAR" class="log">
+        <input type="submit" name="btnAcessar" value="entrar" class="log">
     </form>
+
+    <div class="line footer"></div>
 
     <footer>
         <span>

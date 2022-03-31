@@ -118,8 +118,6 @@ const creatingCard = (product) => {
             </div>
         </div>`
 
-        
-
     return catalogueCard
 }
 
