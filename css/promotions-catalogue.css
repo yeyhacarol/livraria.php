@@ -104,14 +104,14 @@
     min-height: 52px;
 
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: normal;
     text-align: start;
 
     margin-bottom: 5px;
 }
 
 .description .old-price {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
 
     text-decoration: line-through;
@@ -121,7 +121,7 @@
 
 .description .new-price {
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 600;
 
     margin-bottom: 24px;
 }
@@ -132,11 +132,23 @@
     border: 1px solid #fff;
 }
 
+.description.details {
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    background-color: #5e0707;
+
+    padding-top: 0;
+    border-radius: 0px 0px 10px 10px;
+}
+
+
 .see-more a {
     font-size: 1.5rem;
     font-weight: 700;
-
-    line-height: 15px;
+    
     text-decoration: none;
 
     color: white;

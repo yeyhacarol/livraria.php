@@ -98,11 +98,12 @@
 }
 
 .book-info p {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-align: justify;
+    line-height: 1.8rem;
 }
 
-.line {
+.modal-line {
     border: 1px solid white;
 
     margin-bottom: 30px;

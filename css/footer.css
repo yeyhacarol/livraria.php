@@ -74,16 +74,24 @@
 }
 
 .contact {
+    width: auto;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     margin-left: 50px;
-
-    flex-grow: 1;
 }
 
-.contact span:first-child {
+.social {
+    max-width: 50px;
+    max-height: 50px;
+
+    margin-right: 15px;
+}
+
+.contact span {
+    width: 300px;
     margin-bottom: 30px;
 }
 
@@ -154,4 +162,15 @@
     cursor: pointer;
 
     border: 1px solid #000;
+}
+
+.copyright {
+    width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+.copyright span {
+    font-family: 'Inconsolata', serif;
+    font-size: 1.5rem;
 }
