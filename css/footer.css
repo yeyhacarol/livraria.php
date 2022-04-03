@@ -120,7 +120,7 @@
     text-align: center;
 }
 
-.email, .txtArea {
+.email, .nome, .txtArea {
     width: 350px;
 
     resize: none;
@@ -132,7 +132,7 @@
     border: 1px solid #000;
 }
 
-.email {
+.email, .nome {
     height: 50px;
 
     margin-bottom: 15px;

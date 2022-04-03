@@ -201,18 +201,25 @@
                     <img src="img/instagram.png" alt="" class="social">
                 </div> 
             </div>
-            <form name="frmCadastro" method="post" action="index.html">
+            <div class="copyright">
+                <span>Projeto estritamente para fins estudantis</span>
+                <span>Carolina Vitória</span>
+            </div>
+
+        
+            <form name="frmCadastro" method="post" action="cms/router.php?component=contatos&action=enviar">
                 <div class="form">
                     <span>fale com a gente.</span>
                     <input id="placeholder-email" type="email" name="txtEmail" placeholder="seuemail@gmail.com"
                         class="email">
+                    <input id="placeholder-nome" type="text" name="txtNome" placeholder="seu nome"
+                        class="nome">
                     <textarea id="placeholder-obs" name="txtObs" placeholder="seu feedback é importante para nós"
                         class="txtArea"></textarea>
                     <input type="submit" name="btnEnviar" value="enviar" class="btnEnviar">
                 </div>
             </form>
         </div>
-
     </section>
 
     <div id="modal-content"></div>

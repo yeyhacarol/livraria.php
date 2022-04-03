@@ -39,19 +39,35 @@
     </div>
 
     <div class="contacts">
-        <div id="usersMessage">
+        <!-- <div class="usersMessage"> -->
             <div class="contactInfo">
-                <label>Nome</label>
-                <label>E-mail</label>
-                <label>Opções</label>
+                <label class="name">Nome</label>
+                <label class="email">E-mail</label>
+                <label class="options">Opções</label>
             </div>
-            <div class="contactData">
-                <span>blablablabl</span>
-                <span>blablablabla</span>
-                <span>blablablabla</span>
-            </div>
-        </div>
+
+            <?php
+            /* import do arquivo que possui função para listar contatos */
+            require_once('controller/controllerContatos.php');
+
+            $listaContato = listarContatos();
+
+            foreach ($listaContato as $dados) {
+
+            ?>
+                <div class="contactData">
+                    <span class="name"><?= $dados['nome']?></span>
+                    <span class="email"><?= $dados['email']?></span>
+                    <span class="options"></span>
+                </div>
+            <?php
+
+            }
+
+            ?>
+        <!-- </div> -->
     </div>
+
 </body>
 
 </html>
