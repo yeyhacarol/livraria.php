@@ -12,9 +12,9 @@ function insertContato($dadosContato) {
     $conexao = abrirConexaoMySql();
 
     //variável para armazenar script do bd
-    $scriptSql = "insert into tblContatos
-                    (email,
-                     nome,
+    $scriptSql = "insert into tblcontatos
+                    (nome,
+                     email,
                      mensagem)
                      
                      values
@@ -35,11 +35,14 @@ function insertContato($dadosContato) {
 }
 
 function selectAllContatos() {
+    //inicializando array vazio para evitar erro de variável indefinida
+    $arrayDados = array();
+
     //abrindo conexãocom o bd
     $conexao = abrirConexaoMySql();
 
     //script que seleciona tudo da tabela
-    $scriptSql = "select * from tblContatos";
+    $scriptSql = "select * from tblcontatos";
 
     //variável para armazenar o retorno dos dados
     $resultado = mysqli_query($conexao, $scriptSql);
@@ -51,9 +54,10 @@ function selectAllContatos() {
          $cont = 0;
          while ($resultadoDados = mysqli_fetch_assoc($resultado)) {
              $arrayDados[$cont] = array(
-                 'nome'     => $resultadoDados['nome'],
-                 'email'    => $resultadoDados['email'],
-                 'mensagem' => $resultadoDados['mensagem']
+                 'idContato' => $resultadoDados['idContato'],
+                 'nome'      => $resultadoDados['nome'],
+                 'email'     => $resultadoDados['email'],
+                 'mensagem'  => $resultadoDados['mensagem']
              );
 
              $cont++;
@@ -63,5 +67,20 @@ function selectAllContatos() {
     }
 }
 
+function deleteContato($id) {
+    $conexao = abrirConexaoMySql();
+
+    $statusResposta = (bool) false;
+
+    $scriptSql = "delete from tblcontatos where idcontato=".$id;
+
+    if(mysqli_query($conexao, $scriptSql)) {
+        if(mysqli_affected_rows($conexao)) {
+            $statusResposta = true;
+        }
+    }
+
+    return $statusResposta;
+}
 
 ?>

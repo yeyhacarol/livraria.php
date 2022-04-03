@@ -7,7 +7,7 @@ $component = (string) null;
 $action = (string) null;
 
 //verificando o método da requisição do form
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') {
     //recebendo dados via url
     $component = strtoupper($_GET['component']);
     $action = strtoupper($_GET['action']);
@@ -18,19 +18,38 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             //importando controller
             require_once('./controller/controllerContatos.php');
 
-            if($action == 'ENVIAR') {
+            //se a action for de enviar contato
+            if ($action == 'ENVIAR') {
+                //chamaremos a função para inserir no banco
                 $promessa = inserirContato($_POST);
 
-                if(is_bool($promessa)) {
+                //se o retorno for um booleano, significa que deu certo! se for um array deu errado
+                if (is_bool($promessa)) {
                     if ($promessa) {
-                        echo("<script>alert('Feedback enviado!')
-                             window.location.href='../index.php';</script>");
+                        echo ("<script>alert('Feedback enviado!')
+                             window.location.href='../index.html';</script>");
                     }
-                } else if (!is_bool($promessa)) {
-                    echo("<script>alert('Acho que você esqueceu de preencher algum campo!')</script>
-                         window.history.back();");
+                } else if (is_array($promessa)) {
+                    echo ("<script>alert('Acho que você esqueceu de preencher algo!')
+                         window.history.back();</script>");
+                }
+                //se a action for de deletar mensagem
+            } elseif ($action == 'DELETAR') {
+                $idContato = $_GET['id'];
+
+                $promessa = deletarContato($idContato);
+
+                if (is_bool($promessa)) {
+                    if ($promessa) {
+                        echo ("<script>alert('Feedback apagado!')
+                             window.location.href='../cms/dashboard.php';</script>");
+                    }
+                } elseif (is_array($promessa)) {
+                    echo ("<script>alert('Tivemos problemas para apagar.')
+                         window.history.back();</script>;");
                 }
             }
-        break;
+
+            break;
     }
 }

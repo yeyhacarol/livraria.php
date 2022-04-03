@@ -30,7 +30,7 @@
         </div>
         <div class="user">
             <span>Bem vindo(a), Carolina</span>
-            <a href="#"><img src="img/log-out.png" alt="sair" title="sair"></a>
+            <a href="../index.html"><img src="img/log-out.png" alt="sair" title="sair"></a>
         </div>
     </div>
 
@@ -51,17 +51,21 @@
             require_once('controller/controllerContatos.php');
 
             $listaContato = listarContatos();
-
-            foreach ($listaContato as $dados) {
+            if($listaContato) {
+                foreach ($listaContato as $dados) {
 
             ?>
                 <div class="contactData">
                     <span class="name"><?= $dados['nome']?></span>
                     <span class="email"><?= $dados['email']?></span>
-                    <span class="options"></span>
+                    <span class="options">
+                        <a onclick="return confirm('Quer mesmo apagar o feedback de <?=$dados['nome']?>?')" href="router.php?component=contatos&action=deletar&id=<?=$dados['idContato']?>">
+                            <img src="img/delete.jpg" alt="apagar" title="apagar contato">
+                        </a>
+                    </span>
                 </div>
             <?php
-
+                }
             }
 
             ?>

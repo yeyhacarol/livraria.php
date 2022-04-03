@@ -186,13 +186,18 @@ header span {
     width: 20%;
 }
 
+.options img {
+    width: 40px;
+    height: 100%;
+}
+
 .contactData .name,
 .contactData .email {
     padding-left: 10px;
 }
 
 .name, .email, .options {
-    font-size: clamp(1.2rem, 2vw, 2.0rem);
+    font-size: clamp(1.0rem, 2vw, 1.3rem);
     padding-top: 10px;
     border: 1px solid black;
 }

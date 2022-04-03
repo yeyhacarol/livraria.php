@@ -6,26 +6,34 @@
 //função para inserir os contatos da view na model 
 function inserirContato($dadosContato) {
     //verificando se os dados de contato está vazio
-    if(!empty($dadosContato)) {
+    if (!empty($dadosContato)) {
         //verificando se as caixas de texto para nome e mensagem não estão vazias, pois são os campos obrigatórios de acordo com o banco
-        if(!empty($dadosContato['txtNome']) && !empty($dadosContato['txtObs'])) {
-            $arrayDados = array (
-                "email" => $dadosContato['txtEmail'],
-                "nome"  => $dadosContato['txtNome'],
+        if (!empty($dadosContato['txtNome']) && !empty($dadosContato['txtObs'])) {
+            //refatorando o array para algo com maior semântica
+            $arrayDados = array(
+                "email"      => $dadosContato['txtEmail'],
+                "nome"       => $dadosContato['txtNome'],
                 "mensagem"   => $dadosContato['txtObs']
             );
-        }
 
-        require_once('model/bd/contato.php');
-        if(insertContato($arrayDados)) {
-            return true;
+            //import da model que contém a função de inserir
+            require_once('model/bd/contato.php');
+
+            //verificando se o insert ocorreu com sucesso ou não. retornando um boolean ou um array de erro
+            if (insertContato($arrayDados)) {
+                return true;
+            } else {
+                return array(
+                    'idErro'  => 1,
+                    'message' => 'Não foi possível inserir no banco de dados!'
+                );
+            }
         } else {
-            return array('idErro'  => 1,
-                         'message' => 'Não foi possível inserir no banco de dados!');
+            return array(
+                'idErro'  => 2,
+                'message' => 'Há campos obrigatórios não preenchidos!'
+            );
         }
-    } else {
-        return array('idErro'  => 2,
-                     'message' => 'Há campos obrigatórios não preenchidos!');
     }
 }
 
@@ -42,4 +50,19 @@ function listarContatos() {
     }
 }
 
-?>
+//função para deletarmos contatos no cms
+function deletarContato($id) {
+    if($id != 0 && !empty($id) && is_numeric($id)) {
+        require_once('model/bd/contato.php');
+
+        if(deleteContato($id)) {
+            return true;
+        } else {
+            return array('idErro' => 3,
+                         'message' => 'Banco não conseguiu deletar registro.');
+        }
+    } else {
+        return array('idErro'  => 4,
+                     'message' => 'ID inválido ou não inserido. Exclusão impossível!');
+    }
+}
