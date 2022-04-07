@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* arquivo de rota para receber requisições da view  e enviar para controler pois a view não pode manipular diretamente o banco; 
 autora: Carolina Silva; data de criação: 31/03/2022; versão: 1.0 */
 
@@ -51,5 +51,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
             }
 
             break;
+        
+        /* se for categoria */
+        case 'CATEGORIAS':
+            /* import da controller que faz as devidas validações etc */
+            require_once('./controller/controllerCategorias.php');
+
+            /* verificando se a ação é de inserir */
+            if ($action == 'INSERIR') {
+                /* se sim, chamaremos a função de inserir */
+                $promessa = inserirCategoria($_POST);
+
+                /* enviando mensagens caso a inserção tenha ocorrido com sucesso ou se o campo não foi preenchido*/
+                if (is_bool($promessa)) {
+                    if ($promessa) {
+                        echo ("<script>alert('Categoria inserida!')
+                        window.location.href='../cms/categorias.php';</script>");
+                    }
+                } elseif (is_array($promessa)) {
+                    echo ("<script>alert('Acho que você esqueceu de colocar a categoria!')
+                             window.history.back();</script>");
+                }
+            }
     }
 }

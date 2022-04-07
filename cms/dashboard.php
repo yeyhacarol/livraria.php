@@ -39,37 +39,37 @@
     </div>
 
     <div class="contacts">
-        <!-- <div class="usersMessage"> -->
-            <div class="contactInfo">
-                <label class="name">Nome</label>
-                <label class="email">E-mail</label>
-                <label class="options">Opções</label>
-            </div>
 
-            <?php
-            /* import do arquivo que possui função para listar contatos */
-            require_once('controller/controllerContatos.php');
+        <div class="contactInfo">
+            <label class="name">Nome</label>
+            <label class="email">E-mail</label>
+            <label class="options">Opções</label>
+        </div>
 
-            $listaContato = listarContatos();
-            if($listaContato) {
-                foreach ($listaContato as $dados) {
+        <?php
+        /* import do arquivo que possui função para listar contatos */
+        require_once('controller/controllerContatos.php');
 
-            ?>
+        $listaContato = listarContatos();
+        if ($listaContato) {
+            foreach ($listaContato as $dados) {
+
+        ?>
                 <div class="contactData">
-                    <span class="name"><?= $dados['nome']?></span>
-                    <span class="email"><?= $dados['email']?></span>
+                    <span class="name"><?= $dados['nome'] ?></span>
+                    <span class="email"><?= $dados['email'] ?></span>
                     <span class="options">
-                        <a onclick="return confirm('Quer mesmo apagar o feedback de <?=$dados['nome']?>?')" href="router.php?component=contatos&action=deletar&id=<?=$dados['idContato']?>">
+                        <a onclick="return confirm('Quer mesmo apagar o feedback de <?= $dados['nome'] ?>?')" href="router.php?component=contatos&action=deletar&id=<?= $dados['idContato'] ?>">
                             <img src="img/delete.jpg" alt="apagar" title="apagar contato">
                         </a>
                     </span>
                 </div>
-            <?php
-                }
+        <?php
             }
+        }
 
-            ?>
-        <!-- </div> -->
+        ?>
+
     </div>
 
 </body>

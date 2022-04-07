@@ -18,8 +18,8 @@ function insertContato($dadosContato) {
                      mensagem)
                      
                      values
-                     ('".$dadosContato['email']."',
-                      '".$dadosContato['nome']."',
+                     ('".$dadosContato['nome']."',
+                      '".$dadosContato['email']."',
                       '".$dadosContato['mensagem']."')";
     
     //verificando se o script está correto e encaminhando-o pro bd
@@ -30,6 +30,7 @@ function insertContato($dadosContato) {
         } 
     }
 
+    fecharConexaoMySql($conexao);
     return $statusResposta;
 
 }
@@ -63,6 +64,7 @@ function selectAllContatos() {
              $cont++;
          }
 
+        fecharConexaoMySql($conexao);
         return $arrayDados;
     }
 }
@@ -80,7 +82,6 @@ function deleteContato($id) {
         }
     }
 
+    fecharConexaoMySql($conexao);
     return $statusResposta;
 }
-
-?>

@@ -27,4 +27,8 @@ function abrirConexaoMySql() {
     }
 }
 
+function fecharConexaoMySql($conexao) {
+    mysqli_close($conexao);
+}
+
 ?>

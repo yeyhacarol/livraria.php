@@ -11,8 +11,8 @@ function inserirContato($dadosContato) {
         if (!empty($dadosContato['txtNome']) && !empty($dadosContato['txtObs'])) {
             //refatorando o array para algo com maior semântica
             $arrayDados = array(
-                "email"      => $dadosContato['txtEmail'],
                 "nome"       => $dadosContato['txtNome'],
+                "email"      => $dadosContato['txtEmail'],
                 "mensagem"   => $dadosContato['txtObs']
             );
 
