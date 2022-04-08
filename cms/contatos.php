@@ -8,34 +8,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Rokkitt&display=swap" rel="stylesheet">
-    <link rel="stylesheet" text="text/css" href="css/dashboard.css">
+    <link rel="stylesheet" text="text/css" href="css/reset.css">
+    <link rel="stylesheet" text="text/css" href="css/header.css">
+    <link rel="stylesheet" text="text/css" href="css/contatos.css">
     <title>Administrativo</title>
 </head>
 
 <body>
-    <header>
-        <h2>CMS</h2>
-        <h1>BOOKERY LIBRARY</h1>
-        <span>gerenciamento de conteúdo do site</span>
-    </header>
-
-    <!-- <div class="line"></div> -->
-
-    <div class="nav">
-        <div class="navigation">
-            <a href="#"><img src="img/book.png" alt="adm.produtos" title="adm. produtos"></a>
-            <a href="#"><img src="img/category-icon.png" alt="adm.categorias" title="adm. categorias"></a>
-            <a href="#"><img src="img/chatting.png" alt="contatos" title="contatos"></a>
-            <a href="#"><img src="img/user.png" alt="usuários" title="usuários" class="last"></a>
-        </div>
-        <div class="user">
-            <span>Bem vindo(a), Carolina</span>
-            <a href="../index.html"><img src="img/log-out.png" alt="sair" title="sair"></a>
-        </div>
-    </div>
+    <?php
+    require_once('header.php');
+    ?>
 
     <div class="title">
-        <span>Título da sessão</span>
+        <span>Contatos</span>
     </div>
 
     <div class="contacts">

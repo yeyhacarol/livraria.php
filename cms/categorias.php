@@ -7,14 +7,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Rokkitt&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/categorias.css">
     <title>Cadastro de categorias</title>
 </head>
 
 <body>
-    <?php 
-    require_once('dashboard.php');
+    <?php
+    require_once('header.php');
     ?>
+
+    <div class="title">
+        <span>Administração de categorias</span>
+    </div>
 
     <form name="frmCategoria" method="post" action="router.php?component=categorias&action=inserir">
         <div class="category">
@@ -27,35 +33,40 @@
     </form>
 
     <div class="categories">
+        <div class="categories-content">
+            <div class="categoriesInfo">
+                <label class="gender-data">Gênero</label>
+                <label class="actions">Opções</label>
+            </div>
 
-        <div class="categoriesInfo">
-            <label class="gender-data">Gênero</label>
-            <label class="actions">Opções</label>
+            <?php
+            /* import do arquivo que possui função para listar contatos */
+            require_once('controller/controllerCategorias.php');
+
+            /* chamando função para listar contatos */
+            $listaCategoria = listarCategorias();
+
+            /* verificando se a lista existe para evitar erro quando não houver categorias inseridas */
+            if ($listaCategoria) {
+                foreach ($listaCategoria as $generos) {
+
+            ?>
+                    <div class="categoriesData">
+                        <span class="gender-data"><?= $generos['genero'] ?></span>
+                        <span class="actions">
+                            <a onclick="return confirm('Quer mesmo apagar a categoria <?= $generos['genero'] ?>')" href="router.php?component=categorias&action=deletar&id=<?= $generos['idCategorias'] ?>">
+                                <img src="img/delete.jpg" alt="apagar" title="apagar contato">
+                            </a>
+                        </span>
+                    </div>
+            <?php
+                }
+            }
+
+            ?>
         </div>
 
-        <?php
-        /* import do arquivo que possui função para listar contatos */
-        require_once('controller/controllerCategorias.php');
 
-        /* chamando função para listar contatos */
-        $listaCategoria = listarCategorias();
-
-        /* verificando se a lista existe para evitar erro quando não houver categorias inseridas */
-        if ($listaCategoria) {
-            foreach ($listaCategoria as $generos) {
-
-        ?>
-                <div class="categoriesData">
-                    <span class="gender-data"><?= $generos['genero'] ?></span>
-                    <span class="actions">
-                        <img src="img/delete.jpg" alt="apagar" title="apagar contato">
-                    </span>
-                </div>
-        <?php
-            }
-        }
-
-        ?>
 
     </div>
 

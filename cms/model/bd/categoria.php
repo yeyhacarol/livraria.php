@@ -61,8 +61,10 @@ function selectAllCategorias() {
 }
 
 /* função para deletar categorias no banco de dados */
-function deleteCategoria() {
+function deleteCategoria($idCategoria) {
+    $conexao = abrirConexaoMySql();
 
+    $scriptSql = "delete from tblcategorias where idcategoria=".$idCategoria;
 }
 
 

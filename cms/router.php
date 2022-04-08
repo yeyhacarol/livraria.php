@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                 if (is_bool($promessa)) {
                     if ($promessa) {
                         echo ("<script>alert('Feedback apagado!')
-                             window.location.href='../cms/dashboard.php';</script>");
+                             window.location.href='contatos.php';</script>");
                     }
                 } elseif (is_array($promessa)) {
                     echo ("<script>alert('Tivemos problemas para apagar.')
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                 if (is_bool($promessa)) {
                     if ($promessa) {
                         echo ("<script>alert('Categoria inserida!')
-                        window.location.href='../cms/categorias.php';</script>");
+                        window.location.href='categorias.php';</script>");
                     }
                 } elseif (is_array($promessa)) {
                     echo ("<script>alert('Acho que você esqueceu de colocar a categoria!')
