@@ -42,15 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                 if (is_bool($promessa)) {
                     if ($promessa) {
                         echo ("<script>alert('Feedback apagado!')
-                             window.location.href='contatos.php';</script>");
+                            window.location.href='contatos.php';</script>");
                     }
                 } elseif (is_array($promessa)) {
                     echo ("<script>alert('Tivemos problemas para apagar.')
                          window.history.back();</script>;");
                 }
             }
-
-            break;
         
         /* se for categoria */
         case 'CATEGORIAS':
@@ -72,6 +70,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                     echo ("<script>alert('Acho que você esqueceu de colocar a categoria!')
                              window.history.back();</script>");
                 }
+            } elseif ($action == 'DELETAR') {
+                $idCategoria = $_GET['id'];
+
+                $promessa = deletarCategoria($idCategoria);
+
+                if (is_bool($promessa)) {
+                    if ($promessa) {
+                        echo ("<script>alert('Categoria apagada!')
+                         window.location.href='categorias.php';</script>");
+                    }
+                } elseif (is_array($promessa)) {
+                    echo ("<script>alert('Tivemos problemas para apagar.')
+                         window.history.back();</script>;");
+                }
+            } elseif ($action == 'BUSCAR') {
+                $idCategoria = $_GET['id'];
+
+                $categorias = buscarCategoria($idCategoria);
+
+                session_start();
+
+                $_SESSION['categorias'] = $categorias;
+
+                require_once('categorias.php');
+            } elseif ($action == 'EDITAR') {
+                $idCategoria = $_GET['id'];
+
+                $promessa = atualizarCategoria($_POST, $idCategoria);
+                /*verificando o tipo de dado retornado. se for um booleano, verificará se é verdadeiro e emitirá uma mensagem de sucesso,
+                  caso contrário, verificará se é um array nesse caso emitirá uma mensagem de erro */
+                if(is_bool($promessa)) {
+                    if($promessa) {
+                        echo("<script>
+                            alert('Categoria atualizado com sucesso!') 
+                            window.location.href = 'categorias.php'; 
+                        </script>");
+                    }  
+                } elseif (is_array($promessa)) {
+                    echo("<script>
+                            alert('Não foi possível editar.') 
+                            window.history.back(); 
+                        </script>");
+                }
             }
+            
+            break;
     }
 }
