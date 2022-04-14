@@ -1,4 +1,4 @@
-.category {
+.user-cadaster {
     margin: auto;
 
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
 
     width: 40%;
-    height: 300px;
+    height: 450px;
 
     border: 1px solid black;
 
@@ -21,7 +21,11 @@
     flex-direction: column;
 }
 
-.gender {
+.user-insert {
+    margin-bottom: 20px;
+}
+
+.user-cadaster {
     font-size: clamp(1.4rem, 2vw, 1.6rem);
 
     margin-bottom: 20px;
@@ -36,14 +40,14 @@
     font-style: normal;
 }
 
-.input-gender {
+.input-name, .input-login, .input-password {
     width: 90%;
     height: 40px; 
 
     margin-bottom: 30px;
 }
 
-.save-gender {
+.save-user {
     width: 35%;
     height: 45px;
     
@@ -55,7 +59,7 @@
     transition: all .5s;
 }
 
-.save-gender:hover {
+.save-user:hover {
     background-color: #5e0707;
     color: white;
 
@@ -64,36 +68,36 @@
 }
 
 /* lista de generos */
-.categories-content {
+.users-content {
     width: 40%;
     height: 200px;
 
     margin: auto;
 }
 
-.categories {
+.users {
     width: 100%;
-    min-height: 500px;
+    min-height: 200px;
     height: auto;
 }
 
-.categoriesInfo {
+.usersInfo {
     text-align: center;
 }
 
-.categoriesInfo, .categoriesData {
+.usersInfo, .usersData {
     width: 100%;
     height: 50px;
 
     display: flex;
 }
 
-.gender-data {
-    width: 75%;
+.user-data {
+    width: 60%;
 }
 
 .actions {
-    width: 25%;
+    width: 20%;
 
     display: flex;
     justify-content: center;
@@ -111,11 +115,11 @@
     height: 95% !important;
 }
 
-.categoriesData .gender-data {
+.userData .user-data {
     padding-left: 10px;
 }
 
-.gender-data, .actions {
+.user-data, .actions {
     font-size: clamp(1.3rem, 2vw, 1.5rem);
     padding-top: 10px;
     border: 1px solid black;

@@ -113,7 +113,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                             window.history.back(); 
                         </script>");
                 }
+            } 
+
+        case 'USUARIOS':
+            require_once('controller/controllerUsuarios.php');
+
+            if ($action == 'INSERIR') {
+                $promessa = inserirUsuario($_POST);
+
+                if (is_bool($promessa)) {
+                    if ($promessa) {
+                        echo("<script>alert('Usuário inserida!')
+                        window.location.href='usuarios.php';</script>");
+                    }
+                } elseif (is_array($promessa)) {
+                    echo ("<script>alert('Acho que você esqueceu de preencher algum campo!')
+                             window.history.back();</script>");
+                }
             }
+
             
             break;
     }

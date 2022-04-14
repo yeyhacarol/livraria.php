@@ -1,3 +1,4 @@
+
 show databases;
 
 use dbbookery;
@@ -19,3 +20,6 @@ insert into tblCategorias(nome)
     
 insert into tblCategorias(genero)
 	values('terror');
+
+
+

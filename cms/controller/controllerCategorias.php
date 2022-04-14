@@ -92,14 +92,14 @@ function buscarCategoria($idCategoria)
     }
 }
 
-function atualizarCategoria($nomeCategorias, $idCategoria)
+function atualizarCategoria($nomeCategoria, $idCategoria)
 {
-    if (!empty($nomeCategorias)) {
-        if (!empty($nomeCategorias['txtGenero'])) {
+    if (!empty($nomeCategoria)) {
+        if (!empty($nomeCategoria['txtGenero'])) {
             if ($idCategoria != 0 && !empty($idCategoria) && is_numeric($idCategoria)) {
                 $arrayCategorias = array(
                     "idCategoria"  => $idCategoria,
-                    "genero"       => $nomeCategorias['txtGenero']
+                    "genero"       => $nomeCategoria['txtGenero']
                 );
 
                 require_once('model/bd/categoria.php');

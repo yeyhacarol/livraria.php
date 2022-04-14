@@ -24,10 +24,10 @@
 
     <div class="nav">
         <div class="navigation">
-            <a href="#"><img src="img/book.png" alt="adm.produtos" title="adm. produtos"></a>
+            <a href="produtos.php"><img src="img/book.png" alt="adm.produtos" title="adm. produtos"></a>
             <a href="categorias.php"><img src="img/category-icon.png" alt="adm.categorias" title="adm. categorias"></a>
             <a href="contatos.php"><img src="img/chatting.png" alt="contatos" title="contatos"></a>
-            <a href="#"><img src="img/user.png" alt="usuários" title="usuários" class="last"></a>
+            <a href="usuarios.php"><img src="img/user.png" alt="usuários" title="usuários" class="last"></a>
         </div>
         <div class="user">
             <span>Bem vindo(a), Carolina</span>

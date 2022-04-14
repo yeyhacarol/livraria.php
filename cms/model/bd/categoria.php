@@ -5,7 +5,8 @@
 require_once('conexaoMySql.php');
 
 /* função para inserir categoria no banco de dados */
-function insertCategoria($categoria) {
+function insertCategoria($categoria)
+{
     /* variável para evitar criar else's que retornarão false para conseguirmos fechar a conexão com sucesso */
     $statusResposta = (bool) false;
 
@@ -17,12 +18,12 @@ function insertCategoria($categoria) {
                     (genero)
                     
                     values
-                    ('".strtolower($categoria['genero'])."')";
+                    ('" . strtolower($categoria['genero']) . "')";
 
     /* verificando se o script está correto e encaminhará dados para o bd */
-    if(mysqli_query($conexao, $scriptSql)) {
+    if (mysqli_query($conexao, $scriptSql)) {
         /* verificando se houveram linhas afetadas no bd */
-        if(mysqli_affected_rows($conexao)) {
+        if (mysqli_affected_rows($conexao)) {
             $statusResposta = true;
         }
     }
@@ -32,7 +33,8 @@ function insertCategoria($categoria) {
 }
 
 /* função para selecionar/listar todas categorias existentes no banco de dados */
-function selectAllCategorias() {
+function selectAllCategorias()
+{
     /* inicializando array vazio para evitar erro */
     $arrayCategorias = array();
 
@@ -40,18 +42,18 @@ function selectAllCategorias() {
     $conexao = abrirConexaoMySql();
 
     /* criar script que lista todos os dados da tabela */
-    $scriptSql = "select * from tblcategorias";
+    $scriptSql = "select * from tblcategorias order by genero asc";
 
     /* armazenando retorno dos dados, trazidos através da conexão e do script, numa variável */
     $resultado =  mysqli_query($conexao, $scriptSql);
 
     /* se a variável resultado nos retornar algo, percorreremos cada um dos dados e os converteremos para o nosso array */
-    if($resultado) {
+    if ($resultado) {
         $cont = 0;
 
-        while($resultadoCategorias = mysqli_fetch_assoc($resultado)) {
+        while ($resultadoCategorias = mysqli_fetch_assoc($resultado)) {
             $arrayCategorias[$cont] = array(
-                'idCategoria' => $resultadoCategorias['idCategoria'], 
+                'idCategoria' => $resultadoCategorias['idCategoria'],
                 'genero'      => $resultadoCategorias['genero']
             );
 
@@ -65,15 +67,16 @@ function selectAllCategorias() {
 }
 
 /* função para deletar categorias no banco de dados */
-function deleteCategoria($idCategoria) {
+function deleteCategoria($idCategoria)
+{
     $conexao = abrirConexaoMySql();
 
     $statusResposta = (bool) false;
 
-    $scriptSql = "delete from tblcategorias where idcategoria=".$idCategoria;
+    $scriptSql = "delete from tblcategorias where idCategoria=" . $idCategoria;
 
-    if(mysqli_query($conexao, $scriptSql)) {
-        if(mysqli_affected_rows($conexao)) {
+    if (mysqli_query($conexao, $scriptSql)) {
+        if (mysqli_affected_rows($conexao)) {
             $statusResposta = true;
         }
     }
@@ -83,15 +86,16 @@ function deleteCategoria($idCategoria) {
 }
 
 /* função para selecionar a categoria conforme o id */
-function selectByIdCategoria($idCategoria) {
+function selectByIdCategoria($idCategoria)
+{
     $conexao = abrirConexaoMySql();
 
-    $scriptSql = "select * from tblCategorias where idCategoria=".$idCategoria;
+    $scriptSql = "select * from tblCategorias where idCategoria=" . $idCategoria;
 
     $resultado = mysqli_query($conexao, $scriptSql);
 
-    if($resultado) {
-        if($resultadoDados = mysqli_fetch_assoc($resultado)) {
+    if ($resultado) {
+        if ($resultadoDados = mysqli_fetch_assoc($resultado)) {
             $arrayCategorias = array(
                 "id"     => $resultadoDados['idCategoria'],
                 "genero" => $resultadoDados['genero']
@@ -104,7 +108,8 @@ function selectByIdCategoria($idCategoria) {
     }
 }
 
-function updateCategoria($categoria) {
+function updateCategoria($categoria)
+{
     $statusResposta = (bool) false;
 
     //abrir a conexão com o banco de dados, só assim poderemos fazer a inserção
@@ -114,7 +119,7 @@ function updateCategoria($categoria) {
     $sql = "update tblcategorias set
                 genero        = '" . $categoria['genero'] . "'
             where idCategoria = "  . $categoria['idCategoria'];
-           
+
     //executar o script no banco. _query é a função para encaminhar o script para o banco que retorna um booleano
     //primeira validação para sabermos se o script sql está correto ou não
     if (mysqli_query($conexao, $sql)) {
