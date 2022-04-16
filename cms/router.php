@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                 if(is_bool($promessa)) {
                     if($promessa) {
                         echo("<script>
-                            alert('Categoria atualizado com sucesso!') 
+                            alert('Categoria atualizada com sucesso!') 
                             window.location.href = 'categorias.php'; 
                         </script>");
                     }  
@@ -123,16 +123,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
 
                 if (is_bool($promessa)) {
                     if ($promessa) {
-                        echo("<script>alert('Usuário inserida!')
+                        echo("<script>alert('Usuário inserido!')
                         window.location.href='usuarios.php';</script>");
                     }
                 } elseif (is_array($promessa)) {
                     echo ("<script>alert('Acho que você esqueceu de preencher algum campo!')
                              window.history.back();</script>");
                 }
+            } elseif ($action == 'DELETAR') {
+                $idUsuario = $_GET['id'];
+
+                $promessa = deletarUsuario($idUsuario);
+
+                if (is_bool($promessa)) {
+                    if ($promessa) {
+                        echo ("<script>alert('Usuário apagado!')
+                         window.location.href='usuarios.php';</script>");
+                    }
+                } elseif (is_array($promessa)) {
+                    echo ("<script>alert('Tivemos problemas para apagar.')
+                         window.history.back();</script>;");
+                }
+            } elseif ($action == 'BUSCAR') {
+                /* resgatando id via get (url) */
+                $idUsuario = $_GET['id'];
+
+                /* buscando usuário de acordo com id */
+                $usuarios = buscarUsuario($idUsuario);
+
+                /* iniciando variável de sessão para conseguirmos resgatar os valores e colocarmos nos campos */
+                session_start();
+
+                $_SESSION['usuarios'] = $usuarios;
+
+                /* carregamento da tela */
+                require_once('usuarios.php');
+            } elseif ($action == 'EDITAR') {
+                $idUsuario = $GET['id'];
+
+                $promessa = atualizarUsuario($_POST, $idUsuario);
+
+                if (is_bool($promessa)) {
+                    if ($promessa) {
+                        echo ("<script>alert('Usuário modificado!')
+                         window.location.href='usuarios.php';</script>");
+                    }
+                } elseif (is_array($promessa)) {
+                    echo ("<script>alert('Não foi possível editar.') 
+                     window.history.back();</script>");
+                }
             }
 
-            
             break;
     }
 }

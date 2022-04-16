@@ -73,12 +73,16 @@ function deletarCategoria($idCategoria)
 /* função para buscar no banco a categoria que será editada */
 function buscarCategoria($idCategoria)
 {
+    /* verificando se o id é válido */
     if ($idCategoria != 0 && !empty($idCategoria) && is_numeric($idCategoria)) {
 
+        /* importando arquivo responsável pela ação no bd */
         require_once('model/bd/categoria.php');
 
+        /* chamando função de seleção do usuário */
         $categorias = selectByIdCategoria($idCategoria);
 
+        /* se foi selecionado, ele será retornado */
         if (!empty($categorias)) {
             return $categorias;
         } else {

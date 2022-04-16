@@ -38,11 +38,13 @@ function insertUsuario($usuario) {
 
 /* função para listar os dados de usuário */
 function selectAllUsuarios() {
+    $arrayUsuarios = array();
+
     /* abrir conexão com o banco */
     $conexao = abrirConexaoMySql();
 
     /* criar script de listagem */
-    $scriptSql = "select * from  tblusuarios";
+    $scriptSql = "select * from tblusuarios";
 
     /* armazenando numa variável o resultado da conexão e do script */
     $resultado = mysqli_query($conexao, $scriptSql);
@@ -55,10 +57,84 @@ function selectAllUsuarios() {
         while ($resultadoUsuarios = mysqli_fetch_assoc($resultado)) {
             $arrayUsuarios[$cont] = array(
                 'idUsuario'  => $resultadoUsuarios['idUsuario'],
-
+                'nome'       => $resultadoUsuarios['nome'],
+                'login'      => $resultadoUsuarios['login'],
+                'senha'      => $resultadoUsuarios['senha']
             );
+
+            $cont++;
+        }
+
+        fecharConexaoMySql($conexao);
+        return $arrayUsuarios;
+    }
+}
+
+/* função de deletar usuario no bd */
+function deleteUsuario($idUsuario) { 
+    $conexao = abrirConexaoMySql();
+
+    $statusResposta = (bool) false;
+
+    $scriptSql = "delete from tblusuarios where idUsuario=".$idUsuario;
+
+    if (mysqli_query($conexao, $scriptSql)) {
+        if (mysqli_affected_rows($conexao)) {
+            $statusResposta = true;
         }
     }
+
+    fecharConexaoMySql($conexao);
+    return $statusResposta;
+
+}
+
+/* função para buscar usuario conforme o id */
+function selectByIdUsuario($idUsuario) {
+    /* abrindo conex]ao com bd */
+    $conexao = abrirConexaoMySql();
+
+    /* criando script para seleção de acordo com o id */
+    $scriptSql = "select * from tblUsuarios where idUsuario=".$idUsuario;
+
+    /* armazenando o encaminhamento/retorno em uma variável */
+    $resultado = mysqli_query($conexao, $scriptSql);
+
+    if ($resultado) {
+        if ($resultadoDados = mysqli_fetch_assoc($resultado)) {
+            $arrayUsuarios = array(
+                "id"    => $resultadoDados['idUsuario'],
+                "nome"  => $resultadoDados['nome'],
+                "login" => $resultadoDados['login'],
+                "senha" => $resultadoDados['senha']
+            );
+        }
+
+        fecharConexaoMySql($conexao);
+        return $arrayUsuarios;
+    }
+}
+
+/* função para finalmente editar usuário */
+function updateUsuario($usuario) {
+    $statusResposta = (bool) false;
+
+    $conexao = abrirConexaoMySql();
+
+    $scriptSql = "update tblUsuarios set
+                    nome   = '".$usuario['nome']."',
+                    login  = '".$usuario['login']."',
+                    senha  = '".$usuario['senha']."'
+                 where idUsuario = ".$usuario['idUsuario'];
+
+    if (mysqli_query($conexao, $scriptSql)) {
+        if(mysqli_affected_rows($conexao)) {
+            $statusResposta = true;
+        }
+    }
+
+    fecharConexaoMySql($conexao);
+    return $statusResposta;
 }
 
 

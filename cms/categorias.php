@@ -86,8 +86,6 @@ if (session_status()) {
             ?>
         </div>
 
-
-
     </div>
 
 </body>
