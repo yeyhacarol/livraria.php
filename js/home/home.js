@@ -196,7 +196,12 @@ const findCatalogueItem = (event) => {
 }
 
 document.querySelectorAll('.details')
-    .forEach(details => details.addEventListener('click', findCatalogueItem))
+    .forEach(details => details.addEventListener('click', function(event)
+    {
+        catalogueDb.filter(catalogueItem => {
+            return catalogueItem.id == event.target.dataset.id
+        })
+    })) 
 
 loadingCatalogue(catalogueDb)
 

@@ -135,7 +135,7 @@
 }
 
 .search-cep, 
-.calculate-cep {
+#calculate-cep {
     border: 1px solid white;
     font-family: 'Rokkitt', serif;
     font-size: 1.3rem;
@@ -152,7 +152,7 @@
     height: 35px;
 }
 
-.calculate-cep {
+#calculate-cep {
     width: 50px;
     height: 35px;
 

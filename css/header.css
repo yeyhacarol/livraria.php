@@ -8,7 +8,7 @@ header {
 .header-items {
     display: flex;
     flex-direction: row;
-
+    
     font-family: 'Rokkitt', serif;
     font-size: 1.8rem;
     font-weight: 400;
@@ -24,8 +24,6 @@ header .search-area {
 }
 
 .header-title {
-    width: 3800px; /* to resolve! */
-
     margin: auto;
     text-align: center;
 }
