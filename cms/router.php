@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                     }
                 } elseif (is_array($promessa)) {
                     echo ("<script>alert('Não foi possível editar.') 
-                     </script>");
+                     window.history.back();</script>");
                 }
             }
 
