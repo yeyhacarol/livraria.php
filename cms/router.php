@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                 /* carregamento da tela */
                 require_once('usuarios.php');
             } elseif ($action == 'EDITAR') {
-                $idUsuario = $GET['id'];
+                $idUsuario = $_GET['id'];
 
                 $promessa = atualizarUsuario($_POST, $idUsuario);
 
@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                     }
                 } elseif (is_array($promessa)) {
                     echo ("<script>alert('Não foi possível editar.') 
-                     window.history.back();</script>");
+                     </script>");
                 }
             }
 

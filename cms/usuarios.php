@@ -6,9 +6,9 @@ $form = (string) "router.php?component=usuarios&action=inserir";
 if (session_status()) {
     if (!empty($_SESSION['usuarios'])) {
         $idUsuario = $_SESSION['usuarios']['id'];
-        $nome = $_SESSION['usuarios']['nome'];
-        $login = $_SESSION['usuarios']['login'];
-        $senha = $_SESSION['usuarios']['senha'];
+        $nome      = $_SESSION['usuarios']['nome'];
+        $login     = $_SESSION['usuarios']['login'];
+        $senha     = $_SESSION['usuarios']['senha'];
 
         $form = "router.php?component=usuarios&action=editar&id=" . $idUsuario;
 
@@ -92,7 +92,7 @@ if (session_status()) {
                             <a onclick="return confirm('Quer mesmo apagar usuário?')" href="router.php?component=usuarios&action=deletar&id=<?= $usuarios['idUsuario'] ?>">
                                 <img src="img/delete.jpg" alt="apagar" title="apagar usuário">
                             </a>
-                            <a href="router.php?component=usuarios&action=buscar&id=<? $usuarios['idUsuario'] ?>">
+                            <a href="router.php?component=usuarios&action=buscar&id=<?= $usuarios['idUsuario'] ?>">
                                 <img src="img/edit.png" alt="editar usuario" title="editar usuário" class="edit">
                             </a>
                         </span>

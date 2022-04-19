@@ -75,14 +75,15 @@ function deletarUsuario($idUsuario)
 }
 
 /* função para buscar o usuario a ser editado */
-function buscarUsuario($idUsuario) {
+function buscarUsuario($idUsuario)
+{
     /* validando o id */
     if ($idUsuario != 0 && !empty($idUsuario) && is_numeric($idUsuario)) {
-        require_once('mode/bd/usuario.php');
+        require_once('model/bd/usuario.php');
 
         /* buscando usuário */
         $usuarios = selectByIdUsuario($idUsuario);
-       
+
         /* retornando uma resposta, sendo ela true o retorno do usuário clicado ou false/mensagem de erro */
         if (!empty($usuarios)) {
             return $usuarios;
@@ -98,14 +99,17 @@ function buscarUsuario($idUsuario) {
 }
 
 /* função para atualizar o usuário */
-function atualizarUsuario($usuario, $idUsuario) {
+function atualizarUsuario($usuario, $idUsuario)
+{
     if (!empty($usuario)) {
+        /* verificando se os campos obrigatórios não estão vazios */
         if (!empty($usuario['txtNome']) && !empty($usuario['txtLogin']) && !empty($usuario['txtSenha'])) {
+            /* validando o id */
             if ($idUsuario != 0 && !empty($idUsuario) && is_numeric($idUsuario)) {
                 $arrayUsuario = array(
                     "idUsuario" => $idUsuario,
                     "nome"      => $usuario['txtNome'],
-                    "login"     => $$usuario['txtLogin'],
+                    "login"     => $usuario['txtLogin'],
                     "senha"     => $usuario['txtSenha']
                 );
 
@@ -116,20 +120,17 @@ function atualizarUsuario($usuario, $idUsuario) {
                 } else {
                     return array(
                         'idErro'  => 1,
-                        'message' => 'Não foi possível editar no banco.'
-                    );
+                        'message' => 'Não foi possível editar no banco.');
                 }
             } else {
                 return array(
                     'idErro'  => 4,
-                    'message' => 'Não conseguimos editar registro. ID inválido ou não inserido.'
-                );
+                    'message' => 'Não conseguimos editar registro. ID inválido ou não inserido.');
             }
         } else {
             return array(
                 'idErro'  => 2,
-                'message' => 'Algum campo obrigatório não preenchido.'
-            );
+                'message' => 'Algum campo obrigatório não preenchido.');
         }
     }
 }

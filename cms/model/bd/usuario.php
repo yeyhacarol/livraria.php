@@ -95,7 +95,7 @@ function selectByIdUsuario($idUsuario) {
     $conexao = abrirConexaoMySql();
 
     /* criando script para seleção de acordo com o id */
-    $scriptSql = "select * from tblUsuarios where idUsuario=".$idUsuario;
+    $scriptSql = "select * from tblUsuarios where idUsuario =".$idUsuario;
 
     /* armazenando o encaminhamento/retorno em uma variável */
     $resultado = mysqli_query($conexao, $scriptSql);
@@ -125,7 +125,7 @@ function updateUsuario($usuario) {
                     nome   = '".$usuario['nome']."',
                     login  = '".$usuario['login']."',
                     senha  = '".$usuario['senha']."'
-                 where idUsuario = ".$usuario['idUsuario'];
+                where idUsuario = ".$usuario['idUsuario'];
 
     if (mysqli_query($conexao, $scriptSql)) {
         if(mysqli_affected_rows($conexao)) {
