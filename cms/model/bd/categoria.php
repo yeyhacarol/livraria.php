@@ -53,7 +53,7 @@ function selectAllCategorias()
 
         while ($resultadoCategorias = mysqli_fetch_assoc($resultado)) {
             $arrayCategorias[$cont] = array(
-                'idCategoria' => $resultadoCategorias['idCategoria'],
+                'idCategoria' => $resultadoCategorias['idCategorias'],
                 'genero'      => $resultadoCategorias['genero']
             );
 
@@ -73,7 +73,7 @@ function deleteCategoria($idCategoria)
 
     $statusResposta = (bool) false;
 
-    $scriptSql = "delete from tblcategorias where idCategoria=" . $idCategoria;
+    $scriptSql = "delete from tblcategorias where idCategorias=".$idCategoria;
 
     if (mysqli_query($conexao, $scriptSql)) {
         if (mysqli_affected_rows($conexao)) {
@@ -90,14 +90,14 @@ function selectByIdCategoria($idCategoria)
 {
     $conexao = abrirConexaoMySql();
 
-    $scriptSql = "select * from tblCategorias where idCategoria=" . $idCategoria;
+    $scriptSql = "select * from tblCategorias where idCategorias=" . $idCategoria;
 
     $resultado = mysqli_query($conexao, $scriptSql);
 
     if ($resultado) {
         if ($resultadoDados = mysqli_fetch_assoc($resultado)) {
             $arrayCategorias = array(
-                "id"     => $resultadoDados['idCategoria'],
+                "id"     => $resultadoDados['idCategorias'],
                 "genero" => $resultadoDados['genero']
             );
         }
@@ -118,7 +118,7 @@ function updateCategoria($categoria)
     //variável para armazenar o script do banco
     $sql = "update tblcategorias set
                 genero        = '" . $categoria['genero'] . "'
-            where idCategoria = "  . $categoria['idCategoria'];
+            where idCategorias = "  . $categoria['idCategorias'];
 
     //executar o script no banco. _query é a função para encaminhar o script para o banco que retorna um booleano
     //primeira validação para sabermos se o script sql está correto ou não

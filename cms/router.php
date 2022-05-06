@@ -49,6 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                          window.history.back();</script>;");
                 }
             }
+
+            break;
         
         /* se for categoria */
         case 'CATEGORIAS':
@@ -78,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                 if (is_bool($promessa)) {
                     if ($promessa) {
                         echo ("<script>alert('Categoria apagada!')
-                         window.location.href='categorias.php';</script>");
+                        window.location.href='categorias.php';</script>");
                     }
                 } elseif (is_array($promessa)) {
                     echo ("<script>alert('Tivemos problemas para apagar.')
@@ -98,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                 $idCategoria = $_GET['id'];
 
                 $promessa = atualizarCategoria($_POST, $idCategoria);
+
                 /*verificando o tipo de dado retornado. se for um booleano, verificará se é verdadeiro e emitirá uma mensagem de sucesso,
                   caso contrário, verificará se é um array nesse caso emitirá uma mensagem de erro */
                 if(is_bool($promessa)) {
@@ -114,6 +117,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
                         </script>");
                 }
             } 
+
+            break;
 
         case 'USUARIOS':
             require_once('controller/controllerUsuarios.php');

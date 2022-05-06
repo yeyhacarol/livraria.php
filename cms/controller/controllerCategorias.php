@@ -102,7 +102,7 @@ function atualizarCategoria($nomeCategoria, $idCategoria)
         if (!empty($nomeCategoria['txtGenero'])) {
             if ($idCategoria != 0 && !empty($idCategoria) && is_numeric($idCategoria)) {
                 $arrayCategorias = array(
-                    "idCategoria"  => $idCategoria,
+                    "idCategorias"  => $idCategoria,
                     "genero"       => $nomeCategoria['txtGenero']
                 );
 
