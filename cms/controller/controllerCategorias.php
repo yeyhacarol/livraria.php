@@ -1,7 +1,7 @@
 <?php
 /* arquivo de para manipular dados relativos a categoria e validá-los; autora: Carolina Silva; data de criação: 07/04/2022; versão: 1.0 */
 
-/* função para inserir categorias na model */
+/* função para encaminhar categorias para model */
 function inserirCategoria($categoria)
 {
     /* validando se categoria, ou seja, o nome da categoria foi prenchido */

@@ -18,7 +18,7 @@ function insertCategoria($categoria)
                     (genero)
                     
                     values
-                    ('" . strtolower($categoria['genero']) . "')";
+                    ('" . strtolower($categoria['genero']) . "');";
 
     /* verificando se o script está correto e encaminhará dados para o bd */
     if (mysqli_query($conexao, $scriptSql)) {
