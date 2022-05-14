@@ -27,7 +27,7 @@ function insertProduto($produto) {
 
     /* verificando se a conexão e o script retornaram algo. se o script alterou linhas na tabela */
     if (mysqli_query($conexao, $scriptSql)) {
-        if (mysqli_affected_rows($scriptSql)) {
+        if (mysqli_affected_rows($conexao)) {
             $statusResposta = true;
         }
     }
@@ -76,7 +76,7 @@ function deleteProduto($idProduto) {
     $scriptSql = "delete fo=rom tblProdutos where idProduto".$idProduto;
 
     if (mysqli_query($conexao, $scriptSql)) {
-        if (mysqli_affected_rows($scriptSql)) {
+        if (mysqli_affected_rows($conexao)) {
             $statusResposta = true;
         }
     }
@@ -87,16 +87,52 @@ function deleteProduto($idProduto) {
 
 /* função que selecionará o produto a partir do id */
 function selectByIdProduto($idProduto) {
-    $conexao = fecharConexaoMySql();
+    $conexao = abrirConexaoMySql();
 
-    
+    $scriptSql = "select * from tblProdutos whwew idProduto =".$idProduto;
 
+    $resultado = mysqli_query($conexao, $scriptSql);
+
+    if ($resultado) {
+        if ($resultadoDados = mysqli_fetch_assoc($resultado)) {
+            $arrayProdutos = array(
+                'id'        => $resultadoDados['idProduto'],
+                'titulo'    => $resultadoDados['titulo'],
+                'autor'     => $resultadoDados['autor'],
+                'descricao' => $resultadoDados['descricao'],
+                'preco'     => $resultadoDados['preco'],
+                'desconto'  => $resultadoDados['desconto'],
+            );
+        }
+
+        fecharConexaoMySql($conexao);
+        return $arrayProdutos;
+    }
 
 }
 
 /* função para atualizar/editar podutos no banco de dados */
-function updateProdutos() {
+function updateProduto($produto) {
+    $statusResposta = (bool) false;
 
+    $conexao = abrirConexaoMySql();
+
+    $scriptSql = "update tblProdutos set
+                    titulo    = '".$produto['titulo']."',
+                    autor     = '".$produto['autor']."',
+                    descricao = '".$produto['descricao']."',
+                    preco     = ".$produto['preco'].",
+                    desconto  = ".$produto['desconto']."
+                where idProduto = ".$produto['idUsuario'];
+
+    if (mysqli_query($conexao, $scriptSql)) {
+        if (mysqli_affected_rows($conexao)) {
+            $statusResposta = true;
+        }
+
+        fecharConexaoMySql($conexao);
+        return $statusResposta;
+    }
 }
 
 

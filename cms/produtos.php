@@ -4,6 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de produtos</title>
+
+    <style>
+        .product-cadaster {
+            width: 300px;
+            height: 500px;
+
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            border: 1px solid #000;
+        }
+
+        .titulo, .autor, .descricao, .preco {
+            display: flex;
+            flex-direction: column;
+
+            width: 250px;
+        }
+        input {
+            height: 100px;
+        }
+        input, textarea {
+            border: 1px solid #000;
+            background-color: transparent;
+
+            resize: none;
+        }
+
+    </style>
 </head>
 <body>
 <?php
@@ -14,43 +46,27 @@
         <span>Administração de produtos</span>
     </div>
 
-    <form name="frmCategoria" method="post" action="<?= $form ?>">
-        <div class="product">
-            <div class="insert">
-                <span class="gender">Produto a inserir</span>
-                <input type="text" name="txtTitulo" value="" class="input-title">
-                <input type="text" name="txtAutor" value="" class="input-autor">
-                <textarea name="txtDescricao"></textarea>
-                <input type="number" name="txtPreco" value="" class="input-price">
-                <input type="text" name="txtTitulo" value="" class="input-title">
-                <input type="submit" name="btnSalvar" value="Salvar" class="save-gender">
+    <form name="frmProdutos" action="" method="POST" >
+        <div class="product-cadaster">
+            <div class="titulo">
+                <label>Título</label>
+                <input type="text" name="txtTitulo">
             </div>
+            <div class="autor">
+                <label>Autor</label>
+                <input type="text" name="txtAutor">
+            </div>
+            <div class="descricao">
+                <label>Descrição</label>
+                <textarea name="txtDescricao"></textarea>
+            </div>
+            <div class="preco">
+                <label>Preço</label>
+                <input type="number" name="txtPreco">
+            </div>
+            <input type="submit" name="btnSalvar" value="Salvar" class="save-product">
         </div>
     </form>
-
-    <?php
-
-        require_once('controller/controllerProdutos.php');
-
-        $produtos = listarProdutos();
-
-        foreach($produtos as $item) {
-
-    ?>
-    
-    <div class="dados">
-        <span class="titulo"><?= $item['titulo']?></span>
-        <span class="titulo"><?= $item['autor']?></span>
-        <span class="titulo"><?= $item['descricao']?></span>
-        <span class="titulo"><?= $item['preco']?></span>
-        <span class="titulo"><?= $item['desconto']?></span>
-    </div>
-
-
-    <?php
-        }
-
-    ?>
 
 
 </body>

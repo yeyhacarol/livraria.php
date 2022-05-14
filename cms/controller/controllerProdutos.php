@@ -72,8 +72,58 @@ function deletarProduto($idProduto) {
     }
 }
 
-/* função para atualizar produto da view */
-function atualizarProduto() {
+/* função para buscar produto que será editadp */
+function buscarProduto($idProduto) {
+    if ($idProduto != 0 && !empty($idProduto) && is_numeric($idProduto)) {
+        require_once('model/bd/produto.php');
 
+        $produtos = selectByIdProduto($idProduto);
+
+        if (!empty($produtos)) {
+            return $produtos;
+        } else {
+            return false;
+        }
+    } else {
+        return array(
+            'idErro'  => 4,
+            'message' => 'ID inválido'
+        );
+    }
+}
+
+/* função para atualizar produto da view */
+function atualizarProduto($produto, $idProduto) {
+    if (!empty($usuario)) {
+        if (!empty($produto['txtTitulo']) && !empty($produto['txtAutor']) && !empty($produto['txtDescricao']) &&
+         !empty($produto['txtPreco'])) {
+            if ($idProduto != 0 && !empty($idProduto) && is_numeric($idProduto)) {
+                $arrayProduto = array(
+                    "titulo"    => $produto['txtTitulo'],
+                    "autor"     => $produto['txtAutor'],
+                    "descricao" => $produto['txtDescricao'],
+                    "preco"     => $produto['txtPreco']
+                );
+
+                require_once('model/bd/produto.php');
+
+                if (updateProduto($arrayProduto)) {
+                    return true;
+                } else {
+                    return array(
+                        'idErro'  => 1,
+                        'message' => 'Não foi possível editar no banco.');
+                }
+            } else {
+                return array(
+                    'idErro'  => 4,
+                    'message' => 'Não conseguimos editar produto. ID inválido ou não inserido.');
+            }
+        } else {
+            return array(
+                'idErro'  => 2,
+                'message' => 'Algum campo obrigatório não preenchido.');
+        }
+    }
 }
 ?>

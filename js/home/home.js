@@ -129,8 +129,8 @@ const loadingCatalogue = (products) => {
 const createModal = (catalogueItem) => {
     const modalCard = document.createElement('div')
     modalCard.setAttribute('id', 'modal-container')
-    modalCard.innerHTML = 
-    `<div id="modal">
+    modalCard.innerHTML =
+        `<div id="modal">
         <div class="modal-content">
             <div class="top">
                 <div class="book-gender">
@@ -174,7 +174,7 @@ const createModal = (catalogueItem) => {
 
     document.getElementById('modal-content').replaceChildren(modalCard)
     document.getElementById('close-button').addEventListener('click', closeModal)
-    
+
     return modalCard
 }
 
@@ -182,27 +182,23 @@ const modalGenerator = () => {
     document.getElementById('modal-container').classList.toggle('active')
 }
 
-const closeModal = () => {
-    document.getElementById('modal-container').classList.remove('active')
-}
+loadingCatalogue(catalogueDb)
 
-const findCatalogueItem = (event) => {
+document.querySelectorAll('.details')
+.forEach(details => details.addEventListener('click', function(event){
     event.preventDefault()
     let catalogueItem = catalogueDb.filter(item => {
         return item.id == event.target.dataset.id
+      
     })[0]
     createModal(catalogueItem)
     modalGenerator()
+}))
+
+const closeModal = () => {
+    document.getElementById('modal-container').classList.remove('active')
 }
-
-document.querySelectorAll('.details')
-    .forEach(details => details.addEventListener('click', function(event)
-    {
-        catalogueDb.filter(catalogueItem => {
-            return catalogueItem.id == event.target.dataset.id
-        })
-    })) 
-
+    
 loadingCatalogue(catalogueDb)
 
 
