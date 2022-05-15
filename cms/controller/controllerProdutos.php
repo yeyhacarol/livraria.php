@@ -1,30 +1,144 @@
-<?php 
-/* arquivo para manipular dados relativos a produtos e validá-los; autora: Carolina Silva; data de criação: 06/05/2022 versão: 1.0 */
+<?php
+function inserirProduto($dadosProduto, $file)
+{
+    $nomeFoto = (string) null;
+    $destacar = (int) 0;
 
-/* função para encaminhar produtos produtos para model e validá-los */
-function inserirProduto($produto) {
-    /* validando se existe algum produto */
-    if (!empty($produto)) {
-        /* validando campos obrigatórios */
-        if (!empty($produto['txtTitulo']) && !empty($produto['txtAutor']) && !empty($produto['txtDescricao']) &&
-         !empty($produto['txtPreco'])) {
-            /* se todos os campos estiverem preenchidos, criamos um array com todos os dados relativos ao produto */
-            $arrayProdutos = array(
-                "titulo"    => $produto['txtTitulo'],
-                "autor"     => $produto['txtAutor'],
-                "descricao" => $produto['txtDescricao'],
-                "preco"     => $produto['txtPreco']
+    if (!empty($dadosProduto)) {
+        if (
+            !empty($dadosProduto['txtTitulo']) && !empty($dadosProduto['txtAutor']) && !empty($dadosProduto['txtDescricao'])
+            && !empty($dadosProduto['txtPreco']) && !empty($dadosProduto['sltCategorias'] && !empty($file['fileFoto']['name']))
+        ) {
+            if ($file['fileFoto']['name'] != null) {
+                require_once('modulo/upload.php');
+
+                $nomeFoto = uploadFile($file['fileFoto']);
+
+                if (is_array($nomeFoto)) {
+                    return $nomeFoto;
+                }
+
+                if ($dadosProduto['chkDestacar']) {
+                    if ($dadosProduto['chkDestacar'] == 'on') {
+                        $destacar = 1;
+                    }
+                }
+            }
+
+            $arrayDados = array(
+                "titulo"        => $dadosProduto['txtTitulo'],
+                "autor"         => $dadosProduto['txtAutor'],
+                "descricao"     => $dadosProduto['txtDescricao'],
+                "foto"          => $nomeFoto,
+                "preco"         => $dadosProduto['txtPreco'],
+                "desconto"      => $dadosProduto['txtDesconto'] ? $dadosProduto['txtDesconto'] : 0,
+                "destacar"      => $destacar,
+                "idCategorias"  => $dadosProduto['sltCategorias']
             );
 
-            /* import model */
             require_once('model/bd/produto.php');
 
-            if (insertProduto($arrayProdutos)) {
+            if (insertProduto($arrayDados)) {
                 return true;
             } else {
                 return array(
                     'idErro'  => 1,
-                    'message' => 'Não foi possível inserir no banco de dados!'
+                    'message' => 'Não foi possível inserir dados no banco.'
+                );
+            }
+        } else {
+            return array(
+                'idErro'  => 2,
+                'message' => 'Há campos obrigatórios não preenchidos.'
+            );
+        }
+    }
+}
+
+function buscarProduto($id)
+{
+    if ($id != 0 && !empty($id) && is_numeric($id)) {
+        require_once('model/bd/produto.php');
+
+        $dados = selectByIdProduto($id);
+
+        if (!empty($dados)) {
+            return $dados;
+        } else {
+            return false;
+        }
+    } else {
+        return array(
+            'idErro'  => 4,
+            'message' => 'Não foi possível buscar registro. ID inválido.'
+        );
+    }
+}
+
+function atualizarProduto($dadosProduto, $arrayDados)
+{
+    $statusUpload = (bool) false;
+
+    $id = $arrayDados['id'];
+    $foto = $arrayDados['foto'];
+    $file = $arrayDados['file'];
+
+    $destacar = (int) 0;
+
+    if (!empty($dadosProduto)) {
+        if (
+            !empty($dadosProduto['txtTitulo']) && !empty($dadosProduto['txtAutor']) && !empty($dadosProduto['txtDescricao'])
+            && !empty($dadosProduto['txtPreco']) && !empty($dadosProduto['sltCategorias'])
+        ) {
+
+            if ($id != 0 && !empty($id) && is_numeric($id)) {
+                if ($file['fileFoto']['name'] != null) {
+
+                    require_once('modulo/upload.php');
+
+                    $novaFoto = uploadFile($file['fileFoto']);
+
+                    $statusUpload = true;
+                } else {
+                    $novaFoto = $foto;
+                }
+
+                if (isset($dadosProduto['chkDestacar'])) {
+                    if ($dadosProduto['chkDestacar'] == 'on') {
+                        $destacar = 1;
+                    }
+                }
+
+                $arrayDados = array(
+                    "id"           => $id,
+                    "titulo"       => $dadosProduto['txtTitulo'],
+                    "autor"        => $dadosProduto['txtAutor'],
+                    "descricao"    => $dadosProduto['txtDescricao'],
+                    "foto"         => $novaFoto,
+                    "preco"        => $dadosProduto['txtPreco'],
+                    "desconto"     => $dadosProduto['txtDesconto'] ? $dadosProduto['txtDesconto'] : 0,
+                    "destacar"     => $destacar,
+                    "idCategorias" => $dadosProduto['sltCategorias'],
+                );
+                
+                require_once('model/bd/produto.php');
+                require_once('modulo/config.php');
+
+                if (updateProduto($arrayDados)) {
+                    if ($statusUpload) {
+                        unlink(FILE_DIRECTORY_UPLOAD . $foto);
+                    }
+                    return true;
+                } else {
+                    return array(
+                        'idErro'  => 1,
+                        'message' => 'Não foi possível editar dados no banco.'
+                    );
+                }
+            } else {
+                return array(
+                    'idErro'  => 4,
+                    'message' => 'Não foi possível editar registro. ID inválido ou não inserido.'
                 );
             }
         } else {
@@ -36,94 +150,52 @@ function inserirProduto($produto) {
     }
 }
 
-/* função para listar produtos na view */
-function listarProdutos() {
-    /* import da model */
-    require_once('model/bd/produto.php');
+function deletarProduto($arrayDados)
+{
+    $id = $arrayDados['id'];
+    $foto = $arrayDados['foto'];
 
-    $produtos = selectAllProdutos();
-
-    if (!empty($produtos)) {
-        return $produtos;
-    } else {
-        return false;
-    }
-}
-
-/* função para deletar arquivos da view */
-function deletarProduto($idProduto) {
-
-    if ($idProduto != 0 && !empty($idProduto) && is_numeric($idProduto)) {
+    if ($id != 0 && !empty($id) && is_numeric($id)) {
         require_once('model/bd/produto.php');
+        require_once('modulo/config.php');
 
-        if (deleteProduto($idProduto)) {
-            return true;
+        if (deleteProduto($id)) {
+            if ($foto != null) {
+                if (unlink(FILE_DIRECTORY_UPLOAD . $foto)) {
+                    return true;
+                } else {
+                    return array(
+                        'idErro'  => 5,
+                        'message' => 'O banco conseguiu deletar registro, mas a imagem não foi excluída do diretório no servidor.'
+                    );
+                }
+            } else {
+                return true;
+            }
         } else {
             return array(
                 'idErro'  => 3,
-                'message' => 'Não foi possível apagar produto.'
+                'message' => 'O banco não conseguiu deletar registro.'
             );
         }
     } else {
         return array(
             'idErro'  => 4,
-            'message' => 'ID inválido.'
+            'message' => 'Não foi possível excluir registro. ID inválido ou não inserido.'
         );
     }
 }
 
-/* função para buscar produto que será editadp */
-function buscarProduto($idProduto) {
-    if ($idProduto != 0 && !empty($idProduto) && is_numeric($idProduto)) {
-        require_once('model/bd/produto.php');
+function listarProdutos()
+{
+    require_once('model/bd/produto.php');
 
-        $produtos = selectByIdProduto($idProduto);
-
-        if (!empty($produtos)) {
-            return $produtos;
-        } else {
-            return false;
-        }
+    $dados = selectAllProdutos();
+    if (!empty($dados)) {
+        return $dados;
     } else {
-        return array(
-            'idErro'  => 4,
-            'message' => 'ID inválido'
-        );
+        return false;
     }
 }
 
-/* função para atualizar produto da view */
-function atualizarProduto($produto, $idProduto) {
-    if (!empty($usuario)) {
-        if (!empty($produto['txtTitulo']) && !empty($produto['txtAutor']) && !empty($produto['txtDescricao']) &&
-         !empty($produto['txtPreco'])) {
-            if ($idProduto != 0 && !empty($idProduto) && is_numeric($idProduto)) {
-                $arrayProduto = array(
-                    "titulo"    => $produto['txtTitulo'],
-                    "autor"     => $produto['txtAutor'],
-                    "descricao" => $produto['txtDescricao'],
-                    "preco"     => $produto['txtPreco']
-                );
-
-                require_once('model/bd/produto.php');
-
-                if (updateProduto($arrayProduto)) {
-                    return true;
-                } else {
-                    return array(
-                        'idErro'  => 1,
-                        'message' => 'Não foi possível editar no banco.');
-                }
-            } else {
-                return array(
-                    'idErro'  => 4,
-                    'message' => 'Não conseguimos editar produto. ID inválido ou não inserido.');
-            }
-        } else {
-            return array(
-                'idErro'  => 2,
-                'message' => 'Algum campo obrigatório não preenchido.');
-        }
-    }
-}
 ?>

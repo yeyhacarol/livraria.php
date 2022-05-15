@@ -125,10 +125,10 @@ header span {
     transition: width .5s linear 1s, height .5s linear 1.5s, opacity .0s 1s;
 }
 
-.title {
+.header-title {
     padding: 20px;
 }
 
-.title span {
+.header-title span {
     font-size: 1.8rem;
 }

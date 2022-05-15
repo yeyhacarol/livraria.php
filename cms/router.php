@@ -182,60 +182,80 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
             break;
 
         case 'PRODUTOS':
-            require_once('controller/controllerProdutos.php');
+           require_once('./controller/controllerProdutos.php');
 
             if ($action == 'INSERIR') {
-                $promessa = inserirProduto($_POST);
+                if (isset($_FILES) && !empty($_FILES)) {
+                   $promessa = inserirProduto($_POST, $_FILES);
+                } else {
+                    echo("<script>alert('".$promessa['message']."') 
+                    window.history.back();</script>");
+                }
 
                 if (is_bool($promessa)) {
-                    if ($promessa) {
-                        echo("<script>alert('Produto inserido!')
-                        window.location.href='produtos.php';</script>");
+                   if ($promessa) {
+                       echo("<script>alert('Produto inserido com sucesso!') 
+                       window.location.href = 'produtos.php';</script>");
                     }
-                } else if (is_array($promessa)){
-                    echo("<script>alert('Tivemos problemas para apagar.')
-                    window.history.back();</script>;");
+                } elseif (is_array($promessa)) {
+                    echo("<script>alert('".$promessa['message']."') 
+                    window.history.back();</script>");
                 }
             } elseif ($action == 'DELETAR') {
                 $idProduto = $_GET['id'];
+                $foto = $_GET['foto'];
 
-                $promessa = deletarProduto($idProduto);
+                $arrayDados = array(
+                    "id"   => $idProduto,
+                    "foto" => $foto
+                );
 
-                if (is_bool($idProduto)) {
-                    if ($promessa) {
-                        echo("<script>alert('Produto apagado!')
-                        window.location.href='produtos.php';</script>");
-                    }
-                } elseif (is_array($promessa)) {
-                    echo("<script>alert('Tivemos problemas para apagar.')
-                    window.back.history();");
-                }
-            } elseif($action == 'BUSCAR') {
-                $idProduto = $_GET['id'];
-
-                $produtos = buscarProduto($idProduto);
-
-                session_start();
-
-                $SESSION['produtos'] = $produtos;
-
-                require_once('produtos.php');
-            } elseif($action == 'EDITAR') {
-                $idProduto = $_GET['id'];
-
-                $promessa = atualizarProduto($_POST, $idProduto);
+                $promessa = deletarProduto($arrayDados);
 
                 if (is_bool($promessa)) {
                     if ($promessa) {
-                        echo("<script>alert('Produto modificado!')
-                        window.location.href='produtos.php';</script>");
-                    } elseif (is_array($promessa)) {
-                        echo("<script>alert('Tivemos problemas para editar!')
-                        window.history.back();</script>");
+                        echo("<script>alert('Produto excluído com sucesso!') 
+                        window.location.href = 'produtos.php'; </script>");
                     }
+                } elseif (is_array($promessa)) {
+                    echo("<script>alert('".$promessa['message']."') 
+                    window.history.back();</script>");
+                }
+            } elseif ($action == 'BUSCAR') {
+                $idProduto = $_GET['id'];
+
+                $dados = buscarProduto($idProduto);
+
+                session_start();
+
+                $_SESSION['produtos'] = $dados;
+
+                require_once('produtos.php');
+            } elseif ($action == 'EDITAR') {
+                $idProduto = $_GET['id'];
+                $foto = $_GET['foto'];
+
+                $arrayDados = array(
+                    "id"   => $idProduto,
+                    "foto" => $foto,
+                    "file" => $_FILES
+                );
+
+                $promessa = atualizarProduto($_POST, $arrayDados);
+
+                if (is_bool($promessa)) {
+                    if ($promessa) {
+                        echo("<script>alert('Produto atualizado com sucesso!') 
+                            window.location.href = 'produtos.php';</script>");
+                    }
+                } elseif (is_array($promessa)) {
+                    echo("<script>alert('".$promessa['message']."') 
+                    window.history.back();</script>");
                 }
             }
 
             break;
     }
 }
+
+?>

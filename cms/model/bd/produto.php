@@ -1,79 +1,31 @@
-<?php 
-/* arquivo de crud da sessão de produtos, sejam eles destaques, promoções ou apenas do catálogo do banco de dados; autora: Carolina Silva; data criação: 06/05/2022; versão: 1.0 */
-
+<?php
 require_once('conexaoMySql.php');
 
-/* função para inserir produto no banco de dados */
-function insertProduto($produto) {
+function insertProduto($dadosProduto)
+{
     $statusResposta = (bool) false;
 
-    /* abrindo conexão com banco de dados */
     $conexao = abrirConexaoMySql();
 
-    /* script para inserir dados no banco */
-    $scriptSql = "insert into tblProdutos
-                    (titulo,
-                     autor,
-                     descricao,
-                     preco,
-                     desconto)
+    $scriptSql = "insert into tblprodutos
+                    (titulo, 
+                     autor, 
+                     descricao, 
+                     foto, 
+                     preco, 
+                     desconto, 
+                     destacar, 
+                     idCategorias)
                      
-                     values
-                     ('".$produto['titulo']."',
-                      '".$produto['autor']."',
-                      '".$produto['descricao']."',
-                      ".$produto['preco'].",
-                      ".$produto['desconto'].");";
-
-    /* verificando se a conexão e o script retornaram algo. se o script alterou linhas na tabela */
-    if (mysqli_query($conexao, $scriptSql)) {
-        if (mysqli_affected_rows($conexao)) {
-            $statusResposta = true;
-        }
-    }
-
-    fecharConexaoMySql($conexao);
-    return $statusResposta;                  
-}
-
-/* função para listar todos os produtos no banco de dados */
-function selectAllProdutos() {
-    $arrayProdutos = array();
-
-    $conexao = abrirConexaoMySql();
-
-    $scriptSql = "select * from tblProdutos";
-
-    $resultado = mysqli_query($conexao, $scriptSql);
-
-    if ($resultado) {
-        $cont = 0;
-
-        while ($resultadoProdutos = mysqli_fetch_assoc($resultado)) {
-            $arrayProdutos[$cont] = array (
-                'idProduto' => $resultadoProdutos['idProduto'],
-                'titulo'    => $resultadoProdutos['titulo'], 
-                'autor'     => $resultadoProdutos['autor'],
-                'descricao' => $resultadoProdutos['descricao'],
-                'preco'     => $resultadoProdutos['preco'],
-                'desconto'  => $resultadoProdutos['desconto']
-            );
-
-            $cont++;
-        }
-
-        fecharConexaoMySql($conexao);
-        return $arrayProdutos;
-    }
-}
-
-/* função para deletar produtos no banco de dados */
-function deleteProduto($idProduto) {
-    $statusResposta = (bool) false;
-
-    $conexao = abrirConexaoMySql();
-
-    $scriptSql = "delete fo=rom tblProdutos where idProduto".$idProduto;
+                     values(
+                         '" . $dadosProduto['titulo'] . "',
+                         '" . $dadosProduto['autor'] . "',
+                         '" . $dadosProduto['descricao'] . "',
+                         '" . $dadosProduto['foto'] . "',
+                         "  . $dadosProduto['preco'] . ",
+                         "  . $dadosProduto['desconto'] . ",
+                         "  . $dadosProduto['destacar'] . ",
+                         "  . $dadosProduto['idCategorias'] . ");";
 
     if (mysqli_query($conexao, $scriptSql)) {
         if (mysqli_affected_rows($conexao)) {
@@ -85,55 +37,116 @@ function deleteProduto($idProduto) {
     return $statusResposta;
 }
 
-/* função que selecionará o produto a partir do id */
-function selectByIdProduto($idProduto) {
-    $conexao = abrirConexaoMySql();
-
-    $scriptSql = "select * from tblProdutos whwew idProduto =".$idProduto;
-
-    $resultado = mysqli_query($conexao, $scriptSql);
-
-    if ($resultado) {
-        if ($resultadoDados = mysqli_fetch_assoc($resultado)) {
-            $arrayProdutos = array(
-                'id'        => $resultadoDados['idProduto'],
-                'titulo'    => $resultadoDados['titulo'],
-                'autor'     => $resultadoDados['autor'],
-                'descricao' => $resultadoDados['descricao'],
-                'preco'     => $resultadoDados['preco'],
-                'desconto'  => $resultadoDados['desconto'],
-            );
-        }
-
-        fecharConexaoMySql($conexao);
-        return $arrayProdutos;
-    }
-
-}
-
-/* função para atualizar/editar podutos no banco de dados */
-function updateProduto($produto) {
+function deleteProduto($id)
+{
     $statusResposta = (bool) false;
 
     $conexao = abrirConexaoMySql();
 
-    $scriptSql = "update tblProdutos set
-                    titulo    = '".$produto['titulo']."',
-                    autor     = '".$produto['autor']."',
-                    descricao = '".$produto['descricao']."',
-                    preco     = ".$produto['preco'].",
-                    desconto  = ".$produto['desconto']."
-                where idProduto = ".$produto['idUsuario'];
+    $scriptSql = "delete from tblprodutos where idProduto=" . $id;
 
     if (mysqli_query($conexao, $scriptSql)) {
         if (mysqli_affected_rows($conexao)) {
             $statusResposta = true;
         }
+    }
+
+    fecharConexaoMySql($conexao);
+    return $statusResposta;
+}
+
+function selectByIdProduto($id)
+{
+    $conexao = abrirConexaoMySql();
+
+    $scriptSql = "select * from tblprodutos where idproduto=" . $id;
+
+    $resposta = mysqli_query($conexao, $scriptSql);
+
+    if ($resposta) {
+        if ($respostaDados = mysqli_fetch_assoc($resposta)) {
+
+            $arrayDados = array(
+                "id"            => $respostaDados['idProduto'],
+                "titulo"        => $respostaDados['titulo'],
+                "autor"         => $respostaDados['autor'],
+                "descricao"     => $respostaDados['descricao'],
+                "foto"          => $respostaDados['foto'],
+                "preco"         => $respostaDados['preco'],
+                "desconto"      => $respostaDados['desconto'],
+                "destacar"      => $respostaDados['destacar'],
+                "idCategorias"  => $respostaDados['idCategorias']
+            );
+        }
 
         fecharConexaoMySql($conexao);
-        return $statusResposta;
+        return $arrayDados;
     }
 }
 
+function updateProduto($dadosContato)
+{
+    $statusResposta = (bool) false;
+
+    $conexao = abrirConexaoMySql();
+
+    $scriptSql = "update tblprodutos set
+                    titulo       = '" . $dadosContato['titulo'] . "',
+                    autor        = '" . $dadosContato['autor'] . "',
+                    descricao    = '" . $dadosContato['descricao'] . "',
+                    foto         = '" . $dadosContato['foto'] . "',
+                    preco        =  " . $dadosContato['preco'] . ",
+                    desconto     =  " . $dadosContato['desconto'] . ",
+                    destacar     = '" . $dadosContato['destacar'] . "',
+                    idCategorias = '" . $dadosContato['idCategorias'] . "'
+
+                 where idproduto = "  . $dadosContato['id'];
+
+    if (mysqli_query($conexao, $scriptSql)) {
+        $statusResposta = true;   
+    }
+
+    
+    fecharConexaoMySql($conexao);
+    return $statusResposta;
+}
+
+function selectAllProdutos()
+{   
+    $conexao = abrirConexaoMySql();
+
+    $scriptSql = "select * from tblprodutos";
+   
+    $resultado = mysqli_query($conexao, $scriptSql);
+
+    if ($resultado) {
+        $cont = 0;
+
+        while ($resultadoDados = mysqli_fetch_assoc($resultado)) {
+            $arrayDados[$cont] = array(
+                "id"           => $resultadoDados['idProduto'],
+                "titulo"       => $resultadoDados['titulo'],
+                "autor"        => $resultadoDados['autor'],
+                "descricao"    => $resultadoDados['descricao'],
+                "foto"         => $resultadoDados['foto'],
+                "preco"        => $resultadoDados['preco'],
+                "desconto"     => $resultadoDados['desconto'],
+                "precoDescontado" => $resultadoDados['precoDescontado'],
+                "destacar"     => $resultadoDados['destacar'],
+                "idCategorias" => $resultadoDados['idCategorias']
+            );
+
+            $cont++;
+        }
+
+        fecharConexaoMySql($conexao);
+
+        if (isset($arrayDados)) {
+            return $arrayDados;
+        } else {
+            return false;
+        }
+    }
+}
 
 ?>
