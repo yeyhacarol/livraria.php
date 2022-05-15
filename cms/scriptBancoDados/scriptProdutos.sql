@@ -37,5 +37,29 @@ insert into tblprodutos (titulo, autor, descricao, foto, preco, desconto, destac
                             
 select * from tblprodutos;
 
-                            
+create table testePorcentagem (id int auto_increment primary key,
+								preco double not null,
+                                desconto double,
+                                precoDescontado double generated always as (preco - (preco * (desconto / 100))) virtual);
+                                
+insert into testePorcentagem (preco, desconto)
+						values (600, 10);
+                        
+insert into testePorcentagem (preco, desconto)
+						values (56.92, 62);
+                        
+select * from testePorcentagem;
+
+alter table tblprodutos 
+	add column precoDescontado double generated always as (preco - (preco * (desconto / 100))) virtual;
+
+
+desc tblprodutos;
+
+update tblprodutos set desconto = 20 where idproduto = 13;
+
+drop table testePorcentagem;
+
+show tables;
+
             
