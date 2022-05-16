@@ -74,6 +74,7 @@ function selectByIdProduto($id)
                 "foto"          => $respostaDados['foto'],
                 "preco"         => $respostaDados['preco'],
                 "desconto"      => $respostaDados['desconto'],
+                "precoDescontado" => $respostaDados['precoDescontado'],
                 "destacar"      => $respostaDados['destacar'],
                 "idCategorias"  => $respostaDados['idCategorias']
             );

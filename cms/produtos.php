@@ -139,8 +139,7 @@ if (session_status()) {
                     <span class="product-data"><?= $produtos['autor'] ?></span>
                     <span class="product-data"></span>
                     <span class="product-data">R$ <?= $produtos['preco'] ?> / <?= $produtos['desconto'] ?>%</span>
-                    
-                    <span class="product-data"></span>
+                    <span class="product-data"><img src="<?= $produtos['destacar'] == '1' ? 'img/com-destaque.png' : 'img/sem-destaque.png' ?>" alt=""></span>
                     <span class="product-data">
                         <a onclick="return confirm('Quer mesmo apagar produto?')" href="router.php?component=produtos&action=deletar&id=<?= $produtos['id'] ?>&foto=<?= $foto ?>">
                             <img src="img/delete.jpg" alt="apagar" title="apagar produto">
