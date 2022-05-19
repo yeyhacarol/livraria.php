@@ -116,7 +116,7 @@ function selectAllProdutos()
 {   
     $conexao = abrirConexaoMySql();
 
-    $scriptSql = "select * from tblprodutos";
+    $scriptSql = "select * from tblprodutos inner join tblcategorias on tblprodutos.idCategorias = tblcategorias.idcategorias;";
    
     $resultado = mysqli_query($conexao, $scriptSql);
 
@@ -134,7 +134,8 @@ function selectAllProdutos()
                 "desconto"     => $resultadoDados['desconto'],
                 "precoDescontado" => $resultadoDados['precoDescontado'],
                 "destacar"     => $resultadoDados['destacar'],
-                "idCategorias" => $resultadoDados['idCategorias']
+                "idCategorias" => $resultadoDados['idCategorias'],
+                "genero" => $resultadoDados['genero']
             );
 
             $cont++;

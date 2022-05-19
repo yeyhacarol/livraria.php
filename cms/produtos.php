@@ -137,8 +137,8 @@ if (session_status()) {
                     <span class="product-data"><img src="<?= FILE_DIRECTORY_UPLOAD . $foto ?>" alt="foto do produto"></span>
                     <span class="product-data"><?= $produtos['titulo'] ?></span>
                     <span class="product-data"><?= $produtos['autor'] ?></span>
-                    <span class="product-data"></span>
-                    <span class="product-data">R$ <?= $produtos['preco'] ?> / <?= $produtos['desconto'] ?>%</span>
+                    <span class="product-data"><?= $produtos['genero'] ?></span>
+                    <span class="product-data">R$ <?= $produtos['preco'] ?> <?= $produtos['desconto'] ? ' / ' . $produtos['desconto'] . '%' : null ?></span>
                     <span class="product-data"><img src="<?= $produtos['destacar'] == '1' ? 'img/com-destaque.png' : 'img/sem-destaque.png' ?>" alt=""></span>
                     <span class="product-data">
                         <a onclick="return confirm('Quer mesmo apagar produto?')" href="router.php?component=produtos&action=deletar&id=<?= $produtos['id'] ?>&foto=<?= $foto ?>">
